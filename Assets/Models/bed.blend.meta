@@ -1,0 +1,180 @@
+fileFormatVersion: 2
+guid: e7426bf13cbe1bf41b73377512a7732f
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Cube_000
+    100004: Cube_003
+    100006: Cube
+    100008: Cube_001
+    100010: Cube_002
+    100012: BedStruct
+    100014: Mat
+    100016: Pillow
+    400000: //RootNode
+    400002: Cube_000
+    400004: Cube_003
+    400006: Cube
+    400008: Cube_001
+    400010: Cube_002
+    400012: BedStruct
+    400014: Mat
+    400016: Pillow
+    2300000: Cube_000
+    2300002: Cube_003
+    2300004: Cube
+    2300006: Cube_001
+    2300008: Cube_002
+    2300010: BedStruct
+    2300012: Mat
+    2300014: Pillow
+    3300000: Cube_000
+    3300002: Cube_003
+    3300004: Cube
+    3300006: Cube_001
+    3300008: Cube_002
+    3300010: BedStruct
+    3300012: Mat
+    3300014: Pillow
+    4300000: Cube_000
+    4300002: Cube_003
+    4300004: Cube_001
+    4300006: Cube
+    4300008: Cube_002
+    4300010: Pillow
+    4300012: Mat
+    4300014: BedStruct
+    7400000: Default Take
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BedShade
+    second: {fileID: 2100000, guid: d90d5e92faf4d514bbe17fed583a69ec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BedShade1
+    second: {fileID: 2100000, guid: 59617221b6b9c9a46a9c457f0e363ce5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BedShade2
+    second: {fileID: 2100000, guid: 8bb2eb48f14f233448e2d9e75d429850, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BedShade3
+    second: {fileID: 2100000, guid: 006b75c9bb46f6d4ab52426a5667ffef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BedShade4
+    second: {fileID: 2100000, guid: e8d639e9dd2dc954685196a2e34864d8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal1
+    second: {fileID: 2100000, guid: d4fd51f96591a5b438287ea6f42a60e2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal2
+    second: {fileID: 2100000, guid: 546bce2e096e2854e8142653a7982274, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal3
+    second: {fileID: 2100000, guid: 3c36085a3c716f349a7c79e75b10fc4a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pillow
+    second: {fileID: 2100000, guid: fe4b168a206f69e4a8b597e3d5aaf5dd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: unnamed
+    second: {fileID: 2100000, guid: a8edadd58b7ba58439c07fafcdd8187e, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
