@@ -36,13 +36,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1902549606600490}
-  m_LocalRotation: {x: 0, y: 0, z: 0.92387956, w: 0.38268343}
-  m_LocalPosition: {x: 4, y: 4, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2, y: -4.355, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 135}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &61746372211902802
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -66,7 +66,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.8, y: 1}
+  m_Size: {x: 0.8, y: 0.5}
   m_EdgeRadius: 0
 --- !u!95 &95640188301283800
 Animator:
@@ -102,8 +102,8 @@ MonoBehaviour:
   bulletSprite: {fileID: 1024923849659212, guid: 293060dc21eb71c488c028470a39c098,
     type: 2}
   bulletSpeed: 7
-  fireRate: 2
-  delayTime: 0
+  fireRate: 1
+  delayTime: 0.2
 --- !u!212 &212894753289756116
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -11,17 +11,17 @@ Prefab:
   m_SourcePrefab: {fileID: 0}
   m_RootGameObject: {fileID: 1987728507970714}
   m_IsPrefabAsset: 1
---- !u!1 &1565170850621196
+--- !u!1 &1308488074549508
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4979384242757882}
-  - component: {fileID: 61451619196894078}
+  - component: {fileID: 4377479451185400}
+  - component: {fileID: 61607927897707090}
   m_Layer: 0
-  m_Name: Collision
+  m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,22 +52,22 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1987728507970714}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.0079622, y: 13.143463, z: 106}
+  m_LocalPosition: {x: 17.638056, y: 14.305, z: 106}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
-  - {fileID: 4979384242757882}
+  - {fileID: 4377479451185400}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4979384242757882
+--- !u!4 &4377479451185400
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1565170850621196}
+  m_GameObject: {fileID: 1308488074549508}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.7, z: 0}
-  m_LocalScale: {x: 2.45, y: 1.0375, z: 1}
+  m_LocalPosition: {x: 0, y: 0.375, z: 0}
+  m_LocalScale: {x: 2.43, y: 0.4, z: 1}
   m_Children: []
   m_Father: {fileID: 4003607192865272}
   m_RootOrder: 0
@@ -84,7 +84,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.17}
+  m_Offset: {x: 0, y: -0.025}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -95,14 +95,14 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.75, y: 0.7}
+  m_Size: {x: 1.45, y: 0.4}
   m_EdgeRadius: 0
---- !u!61 &61451619196894078
+--- !u!61 &61607927897707090
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1565170850621196}
+  m_GameObject: {fileID: 1308488074549508}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
