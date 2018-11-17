@@ -87,11 +87,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a738b74ae691e004cbf1df0621e66be3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  listener: {fileID: 0}
   maxHealth: 2
   bulletSprite: {fileID: 1024923849659212, guid: 293060dc21eb71c488c028470a39c098,
     type: 2}
-  bulletSpeed: 10
+  bulletSpeed: 7
   fireRate: 1
+  delayTime: 0
 --- !u!212 &212454891510522074
 SpriteRenderer:
   m_ObjectHideFlags: 1

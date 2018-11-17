@@ -38,7 +38,7 @@ public class EnemyMovement : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    public void SetCanShoot(bool canShoot)
+    public virtual void SetCanShoot(bool canShoot)
     {
         this.canShoot = canShoot;
     }
