@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(GateControl))]
 public class EliminateEnemies : MonoBehaviour {
 
     [SerializeField] private List<GameObject> enemies;

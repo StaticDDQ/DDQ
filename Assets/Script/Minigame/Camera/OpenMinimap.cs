@@ -7,7 +7,7 @@ public class OpenMinimap : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.Backspace))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             mapShown = !mapShown;
             if (mapShown)

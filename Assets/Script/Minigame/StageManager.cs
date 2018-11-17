@@ -23,6 +23,10 @@ public class StageManager : MonoBehaviour {
             {
                 enemy.GetComponent<Animator>().enabled = isTrue;
                 enemy.GetComponent<EnemyMovement>().SetCanShoot(isTrue);
+                if(enemy.GetComponent<SpriteAction>() != null)
+                {
+                    enemy.GetComponent<SpriteAction>().SetCanDo(true);
+                }
             }
         }
     }
