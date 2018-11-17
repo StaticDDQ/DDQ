@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1120929876700132}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: -3.71, z: 0}
+  m_LocalPosition: {x: 2, y: -3.71, z: 106}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -90,6 +90,7 @@ MonoBehaviour:
   maxHealth: 2
   bulletSprite: {fileID: 1024923849659212, guid: 293060dc21eb71c488c028470a39c098,
     type: 2}
+  bulletSpeed: 10
   fireRate: 1
 --- !u!212 &212454891510522074
 SpriteRenderer:
