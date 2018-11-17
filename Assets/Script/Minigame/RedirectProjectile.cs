@@ -15,7 +15,7 @@ public class RedirectProjectile : MonoBehaviour {
         else
             chosenProj = enemyProj;
 
-        var bullet = Instantiate(chosenProj, otherSide.position + otherSide.up * 0.1f, transform.rotation);
+        var bullet = Instantiate(chosenProj, otherSide.position + otherSide.up * 0.2f, otherSide.rotation);
 
         bullet.GetComponent<Rigidbody2D>().velocity = bullet.transform.up * bulletSpeed;
         Destroy(bullet, 1.1f);

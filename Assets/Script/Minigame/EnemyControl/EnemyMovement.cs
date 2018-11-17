@@ -2,7 +2,8 @@
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour {
-    
+
+    [SerializeField] protected GameObject listener;
 	[SerializeField] protected int maxHealth = 2;
     protected int currHealth;
     protected bool canShoot = false;
@@ -13,9 +14,15 @@ public class EnemyMovement : MonoBehaviour {
 	}
 
     // Play explode animation when health reaches to 0
-	public void TakeDamage(){
+	public virtual void TakeDamage(){
 		currHealth -= 1;
 		if (currHealth == 0) {
+
+            if (listener != null)
+            {
+                listener.GetComponent<EliminateEnemies>().RemoveEnemy(this.gameObject);
+            }
+
             canShoot = false;
             StartCoroutine(Explode());
         }
