@@ -20,7 +20,7 @@ public class EnemyMovement : MonoBehaviour {
 
             if (listener != null)
             {
-                listener.GetComponent<EliminateEnemies>().RemoveEnemy(this.gameObject);
+                listener.GetComponent<EliminateEnemies>().RemoveEnemy();
             }
 
             canShoot = false;

@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4295729864536204}
   - component: {fileID: 212782070736721208}
   - component: {fileID: 61859576378667188}
-  - component: {fileID: 114489068025766668}
   m_Layer: 0
   m_Name: Gate
   m_TagString: Wall
@@ -38,6 +37,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4158069158853734}
   - component: {fileID: 95008682805179062}
+  - component: {fileID: 114452117780184340}
+  - component: {fileID: 114583079950871138}
   m_Layer: 0
   m_Name: GateParent
   m_TagString: Untagged
@@ -115,17 +116,30 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114489068025766668
+--- !u!114 &114452117780184340
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1500267278775454}
+  m_GameObject: {fileID: 1757577512066584}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b803b5a67721ce428ad7a48a0c8c42c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canDo: 1
+--- !u!114 &114583079950871138
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1757577512066584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40740ca67903e7943abb85c338aadb81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemies: 3
 --- !u!212 &212782070736721208
 SpriteRenderer:
   m_ObjectHideFlags: 1
