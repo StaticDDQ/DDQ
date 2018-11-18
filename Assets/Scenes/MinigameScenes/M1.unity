@@ -159,6 +159,8 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
+    - {fileID: 114583079950871138, guid: c6a0d9da0ce5d4643a61e6872101c48b, type: 2}
+    - {fileID: 114452117780184340, guid: c6a0d9da0ce5d4643a61e6872101c48b, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: c6a0d9da0ce5d4643a61e6872101c48b, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &26246571 stripped

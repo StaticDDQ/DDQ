@@ -34,6 +34,7 @@ public class SceneFade: MonoBehaviour {
     {
         if (!SceneManager.GetSceneByBuildIndex(m).isLoaded)
         {
+            DisabledInputs.switchedMinigame = true;
             StartCoroutine(LoadLevel(m, true));
         }
     }
@@ -67,6 +68,7 @@ public class SceneFade: MonoBehaviour {
         fadeDir = -1;
         Cursor.visible = false;
         mainScene.SetActive(true);
+        DisabledInputs.switchedMinigame = false;
     }
 
     // it will fade in first and wait till the level is ready to be loaded, afterwards it will fade out

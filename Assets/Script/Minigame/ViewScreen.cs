@@ -5,13 +5,11 @@ public class ViewScreen : InteractableOption {
 
     [SerializeField] private int buildNumber;
     [SerializeField] private Transform camPos;
-    [SerializeField] private Transform player;
 
+    private Transform player;
 	private Transform mainCamera;
     private Quaternion prevRot;
 	private bool zoomIn = false;
-	private bool runOnce = false;
-    private bool waitEnum = false;
 
     // Use this for initialization
     void Start(){
@@ -22,46 +20,47 @@ public class ViewScreen : InteractableOption {
     private void Update()
     {
 
-        if (zoomIn && Input.GetKeyDown(KeyCode.E))
+        if (!DisabledInputs.switchedMinigame && zoomIn && Input.GetKeyDown(KeyCode.E))
         {
             InteractWithPlayer();
+            if (DisabledInputs.wonMinigame)
+            {
+                DisabledInputs.wonMinigame = false;
+                transform.tag = "Untagged";
+            }
         }
     }
 
     public override void InteractWithPlayer()
     {
-        // Turn off video
-        if (!runOnce)
-        {
-            GetComponent<InteractTV>().ScreenOff();
-            runOnce = true;
-        }
-        if (!waitEnum)
-        {
-            zoomIn = !zoomIn;
+        zoomIn = !zoomIn;
 
-            IndicatorMethod._instance.EnableIndicator(!zoomIn);
-            // Reset game back to original state
-            if (zoomIn)
-            {
-                prevRot = mainCamera.transform.localRotation;
-                mainCamera.SetParent(camPos);
-                DisabledInputs.ButtonsEnabled = false;
-            }
-            else
-            {
-                mainCamera.SetParent(player);
-            }
-
-            // Transition the camera to what it should face
-            StartCoroutine(MoveCamera(1f));
+        IndicatorMethod._instance.EnableIndicator(!zoomIn);
+        // Reset game back to original state
+        if (zoomIn)
+        {
+            player = mainCamera.transform.parent;
+            prevRot = mainCamera.transform.localRotation;
+            mainCamera.SetParent(camPos);
+            DisabledInputs.ButtonsEnabled = false;
         }
+        else
+        {
+            mainCamera.SetParent(player);
+        }
+
+        // Transition the camera to what it should face
+        StartCoroutine(MoveCamera(0.5f));
     }
 
 	// Update is called once per frame
 	IEnumerator MoveCamera(float overtime){
-        waitEnum = true;
         float elapsedTime = 0;
+
+        if (zoomIn)
+        {
+            SceneFade.instance.StartMinigame(buildNumber);
+        }
 
         while (elapsedTime < overtime) {
 			if (zoomIn) {
@@ -75,14 +74,7 @@ public class ViewScreen : InteractableOption {
             yield return new WaitForEndOfFrame();
 		}
 
-        if (zoomIn)
-        {
-            SceneFade.instance.StartMinigame(buildNumber);
-        }
-
         if (!zoomIn)
             DisabledInputs.ButtonsEnabled = true;
-
-        waitEnum = false;
     }
 }
