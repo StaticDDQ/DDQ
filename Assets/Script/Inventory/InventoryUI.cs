@@ -37,7 +37,7 @@ public class InventoryUI : MonoBehaviour {
 		}
 
 		if (inspectOn || inventoryOn) {
-            DisableInputs.ButtonsEnabled = false;
+            DisabledInputs.ButtonsEnabled = false;
 			GetComponent<PauseButton> ().ToggleCursorState (true);
 		} 
 	}
@@ -45,7 +45,7 @@ public class InventoryUI : MonoBehaviour {
 	public void openInventory(bool turnOn){
 		inventory.SetActive (turnOn);
 		IndicatorMethod._instance.EnableIndicator (!inventoryOn);
-        DisableInputs.ButtonsEnabled = !turnOn;
+        DisabledInputs.ButtonsEnabled = !turnOn;
         GetComponent<PauseButton> ().ToggleCursorState (turnOn);
 
 		Cancel ();

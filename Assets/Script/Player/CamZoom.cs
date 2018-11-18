@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class CamZoom : MonoBehaviour {
 
@@ -12,7 +11,7 @@ public class CamZoom : MonoBehaviour {
 
 	void Update()
 	{
-		if (DisableInputs.ButtonsEnabled && Input.GetMouseButtonDown (1)) 
+		if (DisabledInputs.ButtonsEnabled && Input.GetMouseButtonDown (1)) 
 		{
 			isZoomed = !isZoomed;
 		}

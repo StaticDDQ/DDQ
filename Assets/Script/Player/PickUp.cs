@@ -17,7 +17,7 @@ public class PickUp : MonoBehaviour {
     }
 
     void setIsCarry(){
-        if (Input.GetKeyDown(KeyCode.E))
+        if (DisabledInputs.ButtonsEnabled && Input.GetKeyDown(KeyCode.E))
         {
             int x = Screen.width / 2;
             int y = Screen.height / 2;
@@ -102,7 +102,7 @@ public class PickUp : MonoBehaviour {
     {
 
         IndicatorMethod._instance.EnableIndicator(!canGrab);
-        DisableInputs.ButtonsEnabled = !canGrab;
+        DisabledInputs.ButtonsEnabled = !canGrab;
         mainCam.GetComponent<Blur>().enabled = canGrab;
 
         if (pressAgain)

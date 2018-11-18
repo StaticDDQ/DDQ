@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour {
     // jump is added in update to prevent rigidbody bug where jump force is much higher- if player is on top of a moving object
     private void Update()
     {
-        if (DisableInputs.ButtonsEnabled && Input.GetButtonDown("Jump") && IsGrounded())
+        if (DisabledInputs.ButtonsEnabled && Input.GetButtonDown("Jump") && IsGrounded())
         {
             rigidbody.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
         }
@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        if (DisableInputs.ButtonsEnabled)
+        if (DisabledInputs.ButtonsEnabled)
         {
             // move based on where the camera is facing as well
             moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));

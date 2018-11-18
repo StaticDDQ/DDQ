@@ -8,6 +8,7 @@ public class MoveScreenObject : MonoBehaviour {
     [SerializeField] private GameObject verdict;
     [SerializeField] private GameObject bulletTrail;
     [SerializeField] private SpriteRenderer[] healthbar;
+    [SerializeField] private Camera cam;
     private Rigidbody2D rigid;
     private int health = 3;
     private bool isInvulnerable = false;
@@ -20,10 +21,10 @@ public class MoveScreenObject : MonoBehaviour {
 
     private void Update()
     {
-        if (DisableInputs.ButtonsEnabled && !hasExploded)
+        if (!hasExploded)
         {
             Vector3 mousePos = Input.mousePosition;
-            mousePos = Camera.main.ScreenToWorldPoint(mousePos);
+            mousePos = cam.ScreenToWorldPoint(mousePos);
 
             Vector2 direction = new Vector2(mousePos.x - transform.position.x, mousePos.y - transform.position.y);
 

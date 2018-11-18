@@ -12,10 +12,12 @@ public class SceneFade: MonoBehaviour {
 	private float alpha = 1f;
 	private int fadeDir = -1;
     private bool waitLoad = false;
+    private GameObject mainScene;
 
     // There is only one instance of this and will appear in every scene
     private void Awake()
     {
+        mainScene = GameObject.FindGameObjectWithTag("MainScene");
         if (instance == null)
         {
             instance = this;
@@ -32,7 +34,7 @@ public class SceneFade: MonoBehaviour {
     {
         if (!SceneManager.GetSceneByBuildIndex(m).isLoaded)
         {
-            StartCoroutine(LoadLevel(m, true)); 
+            StartCoroutine(LoadLevel(m, true));
         }
     }
 
@@ -40,8 +42,7 @@ public class SceneFade: MonoBehaviour {
     {
         if (SceneManager.GetSceneByBuildIndex(m).isLoaded)
         {
-            SceneManager.UnloadSceneAsync(m);
-            Camera.main.enabled = true;
+            StartCoroutine(UnloadLevel(m));
         }
     }
 
@@ -54,6 +55,20 @@ public class SceneFade: MonoBehaviour {
         }
     }
 
+    private IEnumerator UnloadLevel(int index)
+    {
+        fadeDir = 1;
+        yield return new WaitForSeconds(2);
+        AsyncOperation operation = SceneManager.UnloadSceneAsync(index);
+        while (!operation.isDone)
+        {
+            yield return null;
+        }
+        fadeDir = -1;
+        Cursor.visible = false;
+        mainScene.SetActive(true);
+    }
+
     // it will fade in first and wait till the level is ready to be loaded, afterwards it will fade out
     private IEnumerator LoadLevel(int index, bool isMinigame)
     {
@@ -63,9 +78,10 @@ public class SceneFade: MonoBehaviour {
         AsyncOperation operation;
         if (!isMinigame)
             operation = SceneManager.LoadSceneAsync(index);
-        else 
+        else
+        {
             operation = SceneManager.LoadSceneAsync(index, LoadSceneMode.Additive);
-
+        }
         while (!operation.isDone)
         {
             yield return null;
@@ -73,7 +89,8 @@ public class SceneFade: MonoBehaviour {
 
         if (isMinigame)
         {
-            Camera.main.enabled = false;
+            Cursor.visible = true;
+            mainScene.SetActive(false);
         }
         fadeDir = -1;
         yield return new WaitForSeconds(1);

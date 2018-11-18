@@ -18,8 +18,6 @@ public class OpenMinimap : MonoBehaviour {
             {   
                 Time.timeScale = 1.0f;
             }
-
-            DisableInputs.ButtonsEnabled = !mapShown;
             map.SetActive(mapShown);
         }
 	}

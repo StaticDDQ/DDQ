@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ExitMinigame : MonoBehaviour {
 
@@ -19,6 +18,6 @@ public class ExitMinigame : MonoBehaviour {
     private IEnumerator UnloadMinigame()
     {
         yield return new WaitForSeconds(.10f);
-        SceneFade.instance.EndMinigame(SceneManager.GetActiveScene().buildIndex);
+        SceneFade.instance.EndMinigame(buildId);
     }
 }

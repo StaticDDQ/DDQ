@@ -8,10 +8,10 @@ public class ViewScreen : InteractableOption {
     [SerializeField] private Transform player;
 
 	private Transform mainCamera;
-
-	private bool waitCoroutine = false;
+    private Quaternion prevRot;
 	private bool zoomIn = false;
 	private bool runOnce = false;
+    private bool waitEnum = false;
 
     // Use this for initialization
     void Start(){
@@ -21,6 +21,7 @@ public class ViewScreen : InteractableOption {
 
     private void Update()
     {
+
         if (zoomIn && Input.GetKeyDown(KeyCode.E))
         {
             InteractWithPlayer();
@@ -35,18 +36,17 @@ public class ViewScreen : InteractableOption {
             GetComponent<InteractTV>().ScreenOff();
             runOnce = true;
         }
-
-        if (!waitCoroutine)
+        if (!waitEnum)
         {
             zoomIn = !zoomIn;
 
-            DisableInputs.ButtonsEnabled = !zoomIn;
             IndicatorMethod._instance.EnableIndicator(!zoomIn);
-
             // Reset game back to original state
             if (zoomIn)
             {
+                prevRot = mainCamera.transform.localRotation;
                 mainCamera.SetParent(camPos);
+                DisabledInputs.ButtonsEnabled = false;
             }
             else
             {
@@ -54,33 +54,35 @@ public class ViewScreen : InteractableOption {
             }
 
             // Transition the camera to what it should face
-            StartCoroutine(MoveCamera(3f));
-
+            StartCoroutine(MoveCamera(1f));
         }
     }
 
 	// Update is called once per frame
 	IEnumerator MoveCamera(float overtime){
-		waitCoroutine = true;
-
+        waitEnum = true;
         float elapsedTime = 0;
-        if (zoomIn)
-        {
-            SceneFade.instance.StartMinigame(buildNumber);
-        }
 
-		while (elapsedTime < overtime) {
+        while (elapsedTime < overtime) {
 			if (zoomIn) {
 				mainCamera.localPosition = Vector3.Lerp (mainCamera.localPosition, Vector3.zero, elapsedTime/overtime);
                 mainCamera.localRotation = Quaternion.Lerp (mainCamera.localRotation, Quaternion.identity, elapsedTime / overtime);
 			} else {
                 mainCamera.localPosition = Vector3.Lerp (mainCamera.localPosition, new Vector3(0,1,0), elapsedTime / overtime);
-                mainCamera.localRotation = Quaternion.Lerp(mainCamera.localRotation, Quaternion.identity, elapsedTime / overtime);
+                mainCamera.localRotation = Quaternion.Lerp(mainCamera.localRotation, prevRot, elapsedTime / overtime);
             }
             elapsedTime += Time.deltaTime;
-			yield return new WaitForEndOfFrame();
+            yield return new WaitForEndOfFrame();
 		}
 
-		waitCoroutine = false;
-	}
+        if (zoomIn)
+        {
+            SceneFade.instance.StartMinigame(buildNumber);
+        }
+
+        if (!zoomIn)
+            DisabledInputs.ButtonsEnabled = true;
+
+        waitEnum = false;
+    }
 }

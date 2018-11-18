@@ -28,7 +28,7 @@ public class Crouch : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (DisableInputs.ButtonsEnabled && Input.GetKeyDown (KeyCode.LeftShift)) {
+		if (DisabledInputs.ButtonsEnabled && Input.GetKeyDown (KeyCode.LeftShift)) {
 			isCrouched = !isCrouched;
             if (isCrouched)
             {

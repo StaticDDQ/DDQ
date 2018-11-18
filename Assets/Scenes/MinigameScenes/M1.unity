@@ -151,7 +151,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4158069158853734, guid: c6a0d9da0ce5d4643a61e6872101c48b, type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1757577512066584, guid: c6a0d9da0ce5d4643a61e6872101c48b, type: 2}
       propertyPath: m_Name
@@ -1241,9 +1241,27 @@ Prefab:
       propertyPath: orthographic
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114352706769307616, guid: 0f05a8a3dab9d72409b40ce187b87573,
+        type: 2}
+      propertyPath: buildId
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372269349499276, guid: 0f05a8a3dab9d72409b40ce187b87573, type: 2}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372269349499276, guid: 0f05a8a3dab9d72409b40ce187b87573, type: 2}
+      propertyPath: m_Name
+      value: Camera
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f05a8a3dab9d72409b40ce187b87573, type: 2}
   m_IsPrefabAsset: 0
+--- !u!20 &775215052 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 20595031680474104, guid: 0f05a8a3dab9d72409b40ce187b87573,
+    type: 2}
+  m_PrefabInternal: {fileID: 775215051}
 --- !u!1 &896788416
 GameObject:
   m_ObjectHideFlags: 0
@@ -1374,7 +1392,7 @@ Transform:
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &968448846 stripped
 GameObject:
@@ -1450,6 +1468,11 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 114224501446793184, guid: 0c72e06e8ccbf4d4abb9850474a26a6f,
+        type: 2}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 775215052}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c72e06e8ccbf4d4abb9850474a26a6f, type: 2}
   m_IsPrefabAsset: 0
@@ -2225,7 +2248,7 @@ Transform:
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1790710879
 Prefab:

@@ -1,5 +1,5 @@
 ﻿
-public static class DisableInputs
+public static class DisabledInputs
 {
     public static bool ButtonsEnabled = true;
 }
