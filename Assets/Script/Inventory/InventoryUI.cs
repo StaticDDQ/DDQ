@@ -25,7 +25,7 @@ public class InventoryUI : MonoBehaviour {
 	}
 
 	void Update(){
-		if(!player.GetComponent<PickUp>().pressAgain && Time.timeScale == 1){
+		if(!DisabledInputs.switchedMinigame && !player.GetComponent<PickUp>().pressAgain && Time.timeScale == 1){
 			if (Input.GetKeyDown (KeyCode.I)) {
 				inventoryOn = !inventory.activeInHierarchy;
 				openInventory (inventoryOn);

@@ -10,7 +10,6 @@ public class InteractTV : MonoBehaviour {
 
 	void Start(){
 		videoPlayer = screen.GetComponent<VideoPlayer> ();
-        screen.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
     }
 
 	public void ScreenOn(){
@@ -21,13 +20,11 @@ public class InteractTV : MonoBehaviour {
     private IEnumerator TurnOn()
     {
         isRunning = true;
-        WaitForSeconds waitTime = new WaitForSeconds(1);
         videoPlayer.Prepare();
         while (!videoPlayer.isPrepared)
         {
-            yield return waitTime;
+            yield return null; ;
         }
-        screen.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
         videoPlayer.Play();
     }
 		
@@ -35,7 +32,6 @@ public class InteractTV : MonoBehaviour {
         if (isRunning)
         {
             videoPlayer.Stop();
-            screen.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
             isRunning = false;
         }
 	}

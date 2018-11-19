@@ -3,19 +3,20 @@
 public class PauseButton : MonoBehaviour {
 
     public static PauseButton instance;
-	[SerializeField] private GameObject Player;
     [SerializeField] private GameObject PauseScreen;
 	private bool pauseGame = false;
-
 	private bool cursorLocked = true;
+    private GameObject Player;
 
     private void Awake()
     {
+        Player = GameObject.FindGameObjectWithTag("Player");
         if (instance != null)
         {
             return;
         }
         instance = this;
+        DontDestroyOnLoad(this.gameObject);
     }
 
     // Update is called once per frame
@@ -48,7 +49,7 @@ public class PauseButton : MonoBehaviour {
 
 	public void ToggleCursorState(bool active){
 		cursorLocked = !active;
-		if (cursorLocked) {
+		if (cursorLocked && !DisabledInputs.switchedMinigame) {
 			Cursor.visible = false;
 		} else {
 			Cursor.visible = true;
