@@ -10,6 +10,7 @@ public class PickUp : MonoBehaviour {
 
     private GameObject carriedObj;
     public bool pressAgain = false;
+    private bool isCarrying = false;
 
     private void Start()
     {
@@ -17,7 +18,7 @@ public class PickUp : MonoBehaviour {
     }
 
     void setIsCarry(){
-        if (DisabledInputs.ButtonsEnabled && Input.GetKeyDown(KeyCode.E))
+        if (InputChecker.instance.ButtonsEnabled && Input.GetKeyDown(KeyCode.E))
         {
             int x = Screen.width / 2;
             int y = Screen.height / 2;
@@ -29,19 +30,15 @@ public class PickUp : MonoBehaviour {
                 PickUpable p = hit.collider.GetComponent<PickUpable>();
                 if(p != null)
                 {
-                    IndicatorMethod._instance.EnableIndicator(false);
-
-                    p.carrying = true;
-
                     if (hit.collider.tag == "pickUp")
                     {
-                        bool canAdd = (!pressAgain && ItemDB._instance.AddItem(hit.collider.gameObject.GetComponent<Item>()));
+                        bool canAdd = (!pressAgain && ItemDB._instance.AddItem(hit.collider.gameObject.GetComponent<ItemHolder>().GetItem()));
                         Grab(hit.collider.gameObject, canAdd);
                     }
                     else
                     {
-                        SetObjectCarry(hit.collider.gameObject);
-                        hit.collider.gameObject.layer = 11;
+                        isCarrying = !isCarrying;
+                        SetObjectCarry(hit.collider.gameObject,isCarrying);
                     }
                 }
             }
@@ -52,7 +49,7 @@ public class PickUp : MonoBehaviour {
 	void Update () {
 
 		if (carriedObj != null && carriedObj.GetComponent<PickUpable>().carrying) {
-            Carry(carriedObj);
+            carriedObj.transform.position = Vector3.Lerp(carriedObj.transform.position, mainCam.position + mainCam.forward * dist, Time.deltaTime * rotSpeed);
             CheckDrop();
 		} else
         {
@@ -71,11 +68,12 @@ public class PickUp : MonoBehaviour {
 
     void CheckDrop()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (InputChecker.instance.ButtonsEnabled && Input.GetKeyDown(KeyCode.E))
         {
             if (carriedObj.tag == "pickUp")
             {
                 Grab(carriedObj, false);
+                return;
             }
             DropObj();
         }
@@ -87,27 +85,36 @@ public class PickUp : MonoBehaviour {
         carriedObj.GetComponent<PickUpable>().carrying = false;
         carriedObj.gameObject.GetComponent<Rigidbody>().useGravity = true;
         carriedObj.transform.SetParent(null);
-        carriedObj.layer = 0;
         carriedObj = null;
     }
 
-    void SetObjectCarry(GameObject obj)
+    void SetObjectCarry(GameObject obj, bool isCarry)
     {
-        carriedObj = obj;
-        carriedObj.GetComponent<Rigidbody>().useGravity = false;
-        carriedObj.transform.SetParent(this.transform);
+        IndicatorMethod._instance.EnableIndicator(!isCarry);
+        obj.GetComponent<Rigidbody>().useGravity = !isCarry;
+        obj.GetComponent<PickUpable>().carrying = isCarry;
+
+        if (isCarry)
+        {
+            carriedObj = obj;
+            carriedObj.transform.SetParent(this.transform);
+        }
+        else
+        {
+            carriedObj.transform.SetParent(null);
+            carriedObj = null;
+        }
     }
 
 	public void Grab(GameObject hitCollider, bool canGrab)
     {
-
-        IndicatorMethod._instance.EnableIndicator(!canGrab);
-        DisabledInputs.ButtonsEnabled = !canGrab;
+        InputChecker.instance.ButtonsEnabled = !canGrab;
         mainCam.GetComponent<Blur>().enabled = canGrab;
 
         if (pressAgain)
         {
-            hitCollider.SetActive(false);
+            Destroy(hitCollider);
+            carriedObj = null;
             pressAgain = false;
             return;
         }

@@ -20,12 +20,12 @@ public class ViewScreen : InteractableOption {
     private void Update()
     {
 
-        if (!DisabledInputs.switchedMinigame && zoomIn && Input.GetKeyDown(KeyCode.E))
+        if (!InputChecker.instance.switchedMinigame && zoomIn && Input.GetKeyDown(KeyCode.E))
         {
             InteractWithPlayer();
-            if (DisabledInputs.wonMinigame)
+            if (InputChecker.instance.wonMinigame)
             {
-                DisabledInputs.wonMinigame = false;
+                InputChecker.instance.wonMinigame = false;
                 transform.tag = "Untagged";
             }
         }
@@ -42,7 +42,7 @@ public class ViewScreen : InteractableOption {
             player = mainCamera.transform.parent;
             prevRot = mainCamera.transform.localRotation;
             mainCamera.SetParent(camPos);
-            DisabledInputs.ButtonsEnabled = false;
+            InputChecker.instance.ButtonsEnabled = false;
         }
         else
         {
@@ -75,6 +75,6 @@ public class ViewScreen : InteractableOption {
 		}
 
         if (!zoomIn)
-            DisabledInputs.ButtonsEnabled = true;
+            InputChecker.instance.ButtonsEnabled = true;
     }
 }

@@ -15,7 +15,7 @@ public class CameraMovement : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        if (DisabledInputs.ButtonsEnabled)
+        if (InputChecker.instance.ButtonsEnabled)
         {
             // Moving the pitch and yaw using mouse movement and applying a certain speed
             yaw += mouseSpeed * Input.GetAxis("Mouse X");

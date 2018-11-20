@@ -3,20 +3,18 @@ using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour {
 	public Image icon;
-	public Text count;
 	public Item currentItem;
 	private InventoryUI inventory;
 
 	void Start(){
-		inventory = this.transform.parent.parent.parent.GetComponent<InventoryUI> ();
+		inventory = this.transform.parent.parent.GetComponent<InventoryUI> ();
 	}
 
 	public void AddItem(Item i){
+
 		currentItem = i;
-		icon.sprite = currentItem.GetSprite();
-		count.text = i.GetAmount().ToString();
+		icon.sprite = currentItem.sprite;
 		icon.enabled = true;
-		count.enabled = true;
 	}
 
 	public void ClearSlot(){
@@ -24,7 +22,6 @@ public class InventorySlot : MonoBehaviour {
 
 		icon.sprite = null;
 		icon.enabled = false;
-		count.enabled = false;
 	}
 
 	public void UseItem(){

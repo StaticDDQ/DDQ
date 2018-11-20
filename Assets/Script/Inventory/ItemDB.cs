@@ -1,17 +1,18 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class ItemDB : MonoBehaviour {
 
 	public static ItemDB _instance;
-	private int spaceCount = 8;
-	private List<Item> itemList = new List<Item>();
-	public List<Item> sortedItem = new List<Item>();
 
 	public delegate void OnItemChanged();
 	public OnItemChanged callBack;
 
-	void Awake(){
+    [SerializeField] private Inventory inventoryData;
+    public List<Item> containedItems;
+
+    void Awake(){
+        containedItems = inventoryData.items;
 		if (_instance != null) {
 			return;
 		}
@@ -19,43 +20,24 @@ public class ItemDB : MonoBehaviour {
 	}
 
 	public bool AddItem(Item item){
-		if (itemList.Count == spaceCount) {
+		if (containedItems.Count == inventoryData.slots) {
 			return false;
 		}
+        containedItems.Add(item);
 
-		for (int i = 0; i < itemList.Count; i++) {
-			if (itemList[i].GetName() == item.GetName()) {
-				itemList [i].SetAmount (itemList[i].GetAmount() + item.GetAmount ());
-				SortAllItem ();
-				if (callBack != null)
-					callBack.Invoke ();
-				return true;
-			}
-		}
-
-		itemList.Add (item);
-		SortAllItem ();
 		if (callBack != null)
 			callBack.Invoke ();
 		return true;
 	}
 
 	public void RemoveItem(Item item){
-		Item itemInList = itemList [itemList.IndexOf (item)];
-		if (itemInList.GetAmount () > 1)
-			itemInList.SetAmount (itemInList.GetAmount () - 1);
-		else
-			itemList.Remove (itemInList);
+		Item itemInList = containedItems[containedItems.IndexOf (item)];
 
-		SortAllItem ();
-		if (callBack != null)
-			callBack.Invoke ();
-	}
-
-	public void SortAllItem(){
-		sortedItem.Clear ();
-		foreach (Item i in itemList) {
-			sortedItem.Add (i);
-		}
+		if(itemInList != null)
+        {
+            containedItems.Remove(itemInList);
+            if (callBack != null)
+                callBack.Invoke();
+        }
 	}
 }

@@ -11,7 +11,7 @@ public class CamZoom : MonoBehaviour {
 
 	void Update()
 	{
-		if (DisabledInputs.ButtonsEnabled && Input.GetMouseButtonDown (1)) 
+		if (InputChecker.instance.ButtonsEnabled && Input.GetMouseButtonDown (1)) 
 		{
 			isZoomed = !isZoomed;
 		}

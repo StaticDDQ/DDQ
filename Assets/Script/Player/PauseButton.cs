@@ -39,7 +39,7 @@ public class PauseButton : MonoBehaviour {
         }
         if (!Player.GetComponent<PickUp>().pressAgain)
         {
-            DisabledInputs.ButtonsEnabled = !openMenu;
+            InputChecker.instance.ButtonsEnabled = !openMenu;
         }
         // Enable cursor to be seen if it is paused
         ToggleCursorState (openMenu);
@@ -49,7 +49,7 @@ public class PauseButton : MonoBehaviour {
 
 	public void ToggleCursorState(bool active){
 		cursorLocked = !active;
-		if (cursorLocked && !DisabledInputs.switchedMinigame) {
+		if (cursorLocked && !InputChecker.instance.switchedMinigame) {
 			Cursor.visible = false;
 		} else {
 			Cursor.visible = true;

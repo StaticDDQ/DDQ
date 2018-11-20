@@ -1,55 +1,50 @@
 ﻿using UnityEngine;
-using UnityStandardAssets.ImageEffects;
 
 public class InventoryUI : MonoBehaviour {
 
-	[SerializeField] private Transform itemsParent;
-	[SerializeField] private GameObject cancelButton, useButton, inspectButton, inventory;
-	[SerializeField] private Transform player;
+	[SerializeField] private GameObject cancelButton, useButton, inspectButton;
 
 	public bool inventoryOn = false;
-	private ItemDB inventoryDB;
-	private Item itemToUse;
+    private bool inspectOn = false;
+    private Item itemToUse;
 	private GameObject useOn;
-	private bool inspectOn = false;
 	private GameObject itemClone = null;
 
-	InventorySlot[] slots;
+    private GameObject player;
+    private GameObject itemsParent;
+    private ItemDB inventoryDB;
+    private InventorySlot[] slots;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		inventoryDB = ItemDB._instance;
 		inventoryDB.callBack += UpdateUI;
 
-		slots = itemsParent.GetComponentsInChildren<InventorySlot> ();
-	}
+        player = GameObject.FindGameObjectWithTag("Player");
+        itemsParent = transform.GetChild(0).gameObject;
+        slots = itemsParent.GetComponentsInChildren<InventorySlot>();
+        UpdateUI();
+    }
 
 	void Update(){
-		if(!DisabledInputs.switchedMinigame && !player.GetComponent<PickUp>().pressAgain && Time.timeScale == 1){
-			if (Input.GetKeyDown (KeyCode.I)) {
-				inventoryOn = !inventory.activeInHierarchy;
-				openInventory (inventoryOn);
+		if(!InputChecker.instance.switchedMinigame && !player.GetComponent<PickUp>().pressAgain && Time.timeScale == 1 && Input.GetKeyDown(KeyCode.I)) {
 
-				if (inspectOn) {
-					DisableInspect ();
-				}
+			inventoryOn = !itemsParent.activeInHierarchy;
+            InputChecker.instance.ButtonsEnabled = !inventoryOn;
+            openInventory (inventoryOn);
+
+			if (inspectOn) {
+				DisableInspect ();
 			}
 		}
-
-		if (inspectOn || inventoryOn) {
-            DisabledInputs.ButtonsEnabled = false;
-			GetComponent<PauseButton> ().ToggleCursorState (true);
-		} 
 	}
 
 	public void openInventory(bool turnOn){
-		inventory.SetActive (turnOn);
+        itemsParent.SetActive (turnOn);
 		IndicatorMethod._instance.EnableIndicator (!inventoryOn);
-        DisabledInputs.ButtonsEnabled = !turnOn;
-        GetComponent<PauseButton> ().ToggleCursorState (turnOn);
+        PauseButton.instance.ToggleCursorState (turnOn);
 
 		Cancel ();
-		
 	}
 	
 	public void InteractItem(Item i){
@@ -61,10 +56,11 @@ public class InventoryUI : MonoBehaviour {
 			inspectButton.SetActive (true);
 	}
 
-	void UpdateUI(){
+	private void UpdateUI(){
 		for (int i = 0; i < slots.Length; i++) {
-			if (i < inventoryDB.sortedItem.Count) {
-				slots [i].AddItem (inventoryDB.sortedItem [i]);
+			if (i < inventoryDB.containedItems.Count) {
+                print(inventoryDB.containedItems[i]);
+				slots [i].AddItem (inventoryDB.containedItems[i]);
 			} else {
 				slots [i].ClearSlot ();
 			}
@@ -93,15 +89,13 @@ public class InventoryUI : MonoBehaviour {
 
 	public void InspectButton(){
 		inspectOn = true;
-		itemClone = Instantiate (itemToUse.GetItem(), player.GetChild(0).position + player.GetChild(0).forward, transform.rotation);
-		player.GetChild(0).GetComponent<Blur> ().enabled = true;
-
+        itemClone = Instantiate(itemToUse.prefabItem, player.transform.position + player.transform.forward, player.transform.rotation);
         player.GetComponent<PickUp>().Grab(itemClone,true);
-
+        print(InputChecker.instance.ButtonsEnabled);
 		openInventory (false);
 	}
 
-	void DisableInspect(){
+	private void DisableInspect(){
         player.GetComponent<PickUp>().Grab(itemClone, false);
 		Destroy (itemClone);
 		openInventory (true);

@@ -21,7 +21,7 @@ public class MouseTrigger : MonoBehaviour {
 				IndicatorMethod._instance.SetSize(30);
 			}
 
-			if (DisabledInputs.ButtonsEnabled && Input.GetKeyDown ("e")) {
+			if (InputChecker.instance.ButtonsEnabled && Input.GetKeyDown ("e")) {
 				if (hit.collider.tag == "interactable") {
 					if (hit.collider.GetComponent<ItemUsable> ().getCanUse()) {
 						hit.collider.GetComponent<ItemUsable> ().Interact ();

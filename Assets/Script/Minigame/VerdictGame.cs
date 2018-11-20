@@ -16,7 +16,7 @@ public class VerdictGame : MonoBehaviour {
         else
         {
             GetComponent<SpriteRenderer>().sprite = successSprite;
-            DisabledInputs.wonMinigame = true;
+            InputChecker.instance.wonMinigame = true;
         }
         StartCoroutine(ShowVerdict(isSuccess));
     }

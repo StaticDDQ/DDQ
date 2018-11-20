@@ -23,8 +23,8 @@ GameObject:
   - component: {fileID: 23359818821299174}
   - component: {fileID: 54336351046057934}
   - component: {fileID: 114428211349891426}
-  - component: {fileID: 114895428350410194}
   - component: {fileID: 65627547179122622}
+  - component: {fileID: 114561795353807106}
   m_Layer: 0
   m_Name: gear1
   m_TagString: pickUp
@@ -38,9 +38,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1515360693538852}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0.6799397, y: 0.69, z: -2.1812522}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.2, y: 0.20000012, z: 0.20000012}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -127,8 +127,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   carrying: 0
   canRotate: 0
-  rotSpeed: 90
---- !u!114 &114895428350410194
+  rotSpeed: 150
+--- !u!114 &114561795353807106
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -136,9 +136,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1515360693538852}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 927386be8419ad648923f43959e5808f, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e290a651d986d640ba58da0c600a88c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Gear
-  sprite: {fileID: 21300000, guid: 6975b3ce1bcf4d045887c4af63515615, type: 3}
-  prefabItem: {fileID: 1515360693538852}
+  currItem: {fileID: 11400000, guid: 93685312a4715ec408b85d3328846b5c, type: 2}
