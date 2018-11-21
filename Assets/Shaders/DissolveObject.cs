@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class DissolveObject : MonoBehaviour,Action {
+public class DissolveObject : MonoBehaviour,DoAction {
     
     private Material mat;
     private float max;

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class ElevatorAction : MonoBehaviour,Action {
+public class ElevatorAction : MonoBehaviour,DoAction {
 
     private bool isOpened = false;
     private bool waitAnim = false;

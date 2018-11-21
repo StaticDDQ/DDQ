@@ -620,6 +620,16 @@ Prefab:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1583454813}
+    - target: {fileID: 61500915125258650, guid: 87e6d4ea231ca3348b7851d5c74bd0f6,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 61500915125258650, guid: 87e6d4ea231ca3348b7851d5c74bd0f6,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87e6d4ea231ca3348b7851d5c74bd0f6, type: 2}
   m_IsPrefabAsset: 0
@@ -892,6 +902,16 @@ Prefab:
         type: 2}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 61500915125258650, guid: 87e6d4ea231ca3348b7851d5c74bd0f6,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 61500915125258650, guid: 87e6d4ea231ca3348b7851d5c74bd0f6,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87e6d4ea231ca3348b7851d5c74bd0f6, type: 2}
@@ -1334,6 +1354,16 @@ Prefab:
       propertyPath: m_Name
       value: Stage (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 61457202081177600, guid: c396b37327ffa1d4789bcec60834a58c,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 61457202081177600, guid: c396b37327ffa1d4789bcec60834a58c,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c396b37327ffa1d4789bcec60834a58c, type: 2}
   m_IsPrefabAsset: 0
@@ -1583,6 +1613,11 @@ Prefab:
     - target: {fileID: 1372269349499276, guid: 0f05a8a3dab9d72409b40ce187b87573, type: 2}
       propertyPath: m_Name
       value: Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 20595031680474104, guid: 0f05a8a3dab9d72409b40ce187b87573,
+        type: 2}
+      propertyPath: m_HDR
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f05a8a3dab9d72409b40ce187b87573, type: 2}
@@ -1860,6 +1895,11 @@ Prefab:
       propertyPath: cam
       value: 
       objectReference: {fileID: 775215052}
+    - target: {fileID: 212037974479307560, guid: 0c72e06e8ccbf4d4abb9850474a26a6f,
+        type: 2}
+      propertyPath: m_FlipY
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c72e06e8ccbf4d4abb9850474a26a6f, type: 2}
   m_IsPrefabAsset: 0
@@ -2411,6 +2451,16 @@ Prefab:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 61500915125258650, guid: 87e6d4ea231ca3348b7851d5c74bd0f6,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 61500915125258650, guid: 87e6d4ea231ca3348b7851d5c74bd0f6,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87e6d4ea231ca3348b7851d5c74bd0f6, type: 2}
   m_IsPrefabAsset: 0
@@ -2482,7 +2532,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10, y: 10}
+  m_Size: {x: 9, y: 9}
   m_EdgeRadius: 0
 --- !u!114 &1669852456
 MonoBehaviour:
@@ -3254,6 +3304,16 @@ Prefab:
     - target: {fileID: 1926739177182684, guid: 47d44c2739561a54f8a07e14ac08ba1d, type: 2}
       propertyPath: m_Name
       value: Stage (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 61248155348831002, guid: 47d44c2739561a54f8a07e14ac08ba1d,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 61248155348831002, guid: 47d44c2739561a54f8a07e14ac08ba1d,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47d44c2739561a54f8a07e14ac08ba1d, type: 2}

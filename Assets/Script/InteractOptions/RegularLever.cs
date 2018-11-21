@@ -12,13 +12,13 @@ public class RegularLever : InteractableOption
         {
             GetComponent<Animator>().SetTrigger("Down");
             isSatisfied = true;
-            objectTrigger.GetComponent<Action>().PerformAction();
+            objectTrigger.GetComponent<DoAction>().PerformAction();
         }
         else if(isSatisfied && !GetComponent<Animator>().GetBool("Up") && !GetComponent<Animator>().GetBool("Down"))
         {
             GetComponent<Animator>().SetTrigger("Up");
             isSatisfied = false;
-            objectTrigger.GetComponent<Action>().PerformAction();
+            objectTrigger.GetComponent<DoAction>().PerformAction();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class RotateDoor : MonoBehaviour, Action {
+public class RotateDoor : MonoBehaviour, DoAction {
 
     [SerializeField] private string trigger1;
     [SerializeField] private string trigger2;

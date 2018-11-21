@@ -59,7 +59,6 @@ public class InventoryUI : MonoBehaviour {
 	private void UpdateUI(){
 		for (int i = 0; i < slots.Length; i++) {
 			if (i < inventoryDB.containedItems.Count) {
-                print(inventoryDB.containedItems[i]);
 				slots [i].AddItem (inventoryDB.containedItems[i]);
 			} else {
 				slots [i].ClearSlot ();
@@ -90,13 +89,12 @@ public class InventoryUI : MonoBehaviour {
 	public void InspectButton(){
 		inspectOn = true;
         itemClone = Instantiate(itemToUse.prefabItem, player.transform.position + player.transform.forward, player.transform.rotation);
-        player.GetComponent<PickUp>().Grab(itemClone,true);
-        print(InputChecker.instance.ButtonsEnabled);
+        player.GetComponent<PickUp>().ShowObject(itemClone, false);
 		openInventory (false);
 	}
 
 	private void DisableInspect(){
-        player.GetComponent<PickUp>().Grab(itemClone, false);
+        player.GetComponent<PickUp>().ShowObject(itemClone, true);
 		Destroy (itemClone);
 		openInventory (true);
 		inventoryOn = true;

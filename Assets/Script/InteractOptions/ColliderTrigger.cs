@@ -8,12 +8,12 @@ public class ColliderTrigger : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         indicator.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.black);
-        target.GetComponent<Action>().PerformAction();
+        target.GetComponent<DoAction>().PerformAction();
     }
 
     private void OnTriggerExit(Collider other)
     {
         indicator.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.white);
-        target.GetComponent<Action>().PerformAction();
+        target.GetComponent<DoAction>().PerformAction();
     }
 }

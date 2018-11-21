@@ -19,6 +19,6 @@ public class ButtonSelector : InteractableOption {
 
     public void TriggerTarget()
     {
-        target.GetComponent<Action>().PerformAction();
+        target.GetComponent<DoAction>().PerformAction();
     }
 }

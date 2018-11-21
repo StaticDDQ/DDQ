@@ -9,6 +9,6 @@ public class RegularButtonPress : InteractableOption {
 	public override void InteractWithPlayer ()
 	{
 		GetComponent<Animator> ().Play (anim, -1, 0f);
-		objectTrigger.GetComponent<Action>().PerformAction ();
+		objectTrigger.GetComponent<DoAction>().PerformAction ();
 	}
 }
