@@ -5,9 +5,6 @@ public class ItemDB : MonoBehaviour {
 
 	public static ItemDB _instance;
 
-	public delegate void OnItemChanged();
-	public OnItemChanged callBack;
-
     [SerializeField] private Inventory inventoryData;
     public List<Item> containedItems;
 
@@ -25,8 +22,6 @@ public class ItemDB : MonoBehaviour {
 		}
         containedItems.Add(item);
 
-		if (callBack != null)
-			callBack.Invoke ();
 		return true;
 	}
 
@@ -36,8 +31,6 @@ public class ItemDB : MonoBehaviour {
 		if(itemInList != null)
         {
             containedItems.Remove(itemInList);
-            if (callBack != null)
-                callBack.Invoke();
         }
 	}
 }

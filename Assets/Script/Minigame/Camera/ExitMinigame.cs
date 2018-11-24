@@ -7,17 +7,17 @@ public class ExitMinigame : MonoBehaviour {
     private bool isUnload = false;
 
 	// Update is called once per frame
-	void Update () {
+	private void Update () {
         if (!isUnload && Input.GetKeyDown(KeyCode.Escape))
         {
             isUnload = true;
-            StartCoroutine(UnloadMinigame());
+            StartCoroutine(UnloadMinigame(GetComponent<VerdictGame>().GetWonGame()));
         }
 	}
 
-    private IEnumerator UnloadMinigame()
+    private IEnumerator UnloadMinigame(bool wonGame)
     {
         yield return new WaitForSeconds(.10f);
-        SceneFade.instance.EndMinigame(buildId);
+        SceneFade.instance.EndMinigame(buildId,wonGame);
     }
 }

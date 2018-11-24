@@ -7,7 +7,7 @@ public class Crouch : MonoBehaviour {
     private float walkSpeed;
     private CapsuleCollider capCollider;
 
-    [SerializeField] private float crouchSpeed = 1.75f;
+    [SerializeField] private Character character;
 
     // Attributes that will change depending if the player is crouched or not
     private float l;
@@ -17,7 +17,7 @@ public class Crouch : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        walkSpeed = GetComponent<PlayerMovement>().Speed;
+        walkSpeed = character.Speed;
 
         capCollider = GetComponent<CapsuleCollider>();
         length = capCollider.height;
@@ -28,19 +28,24 @@ public class Crouch : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (InputChecker.instance.ButtonsEnabled && Input.GetKeyDown (KeyCode.LeftShift)) {
+		if (InputChecker.instance.ButtonsEnabled && Input.GetKeyDown (KeyCode.C)) {
 			isCrouched = !isCrouched;
             if (isCrouched)
             {
                 l = length * 0.5f;
-                GetComponent<PlayerMovement>().Speed = crouchSpeed;
+                character.Speed = character.CrouchSpeed;
             }
             else
             {
                 l = length;
-                GetComponent<PlayerMovement>().Speed = walkSpeed;
+                character.Speed = walkSpeed;
             }
 		}
         capCollider.height = Mathf.Lerp (capCollider.height, l, 3* Time.deltaTime);
 	}
+
+    public bool GetIsCrouched()
+    {
+        return this.isCrouched;
+    }
 }

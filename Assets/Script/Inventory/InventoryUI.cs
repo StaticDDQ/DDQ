@@ -18,7 +18,6 @@ public class InventoryUI : MonoBehaviour {
     // Use this for initialization
     void Start () {
 		inventoryDB = ItemDB._instance;
-		inventoryDB.callBack += UpdateUI;
 
         player = GameObject.FindGameObjectWithTag("Player");
         itemsParent = transform.GetChild(0).gameObject;
@@ -32,7 +31,7 @@ public class InventoryUI : MonoBehaviour {
 			inventoryOn = !itemsParent.activeInHierarchy;
             InputChecker.instance.ButtonsEnabled = !inventoryOn;
             openInventory (inventoryOn);
-
+            UpdateUI();
 			if (inspectOn) {
 				DisableInspect ();
 			}

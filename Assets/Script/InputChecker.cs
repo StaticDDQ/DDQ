@@ -19,5 +19,4 @@ public class InputChecker : MonoBehaviour
 
     public bool ButtonsEnabled = true;
     public bool switchedMinigame = false;
-    public bool wonMinigame = false;
 }

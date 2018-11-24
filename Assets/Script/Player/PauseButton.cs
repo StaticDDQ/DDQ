@@ -4,6 +4,7 @@ public class PauseButton : MonoBehaviour {
 
     public static PauseButton instance;
     [SerializeField] private GameObject PauseScreen;
+    [SerializeField] private GameObject slotScreen;
 	private bool pauseGame = false;
 	private bool cursorLocked = true;
     private GameObject Player;
@@ -16,7 +17,6 @@ public class PauseButton : MonoBehaviour {
             return;
         }
         instance = this;
-        DontDestroyOnLoad(this.gameObject);
     }
 
     // Update is called once per frame
@@ -56,19 +56,26 @@ public class PauseButton : MonoBehaviour {
 		}
 	}
 
+    public void SaveSlot()
+    {
+        slotScreen.SetActive(true);
+        PauseScreen.SetActive(false);
+    }
+
     public void Quit()
     {
         Application.Quit();
     }
 
-    public void GoMenu()
-    {
-
-    }
-
     public void Resume()
     {
         openPauseMenu(false);
+    }
+
+    public void BackPauseScreen()
+    {
+        slotScreen.SetActive(false);
+        PauseScreen.SetActive(true);
     }
 }
 

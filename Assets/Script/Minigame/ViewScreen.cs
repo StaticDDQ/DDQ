@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class ViewScreen : InteractableOption {
 
-    [SerializeField] private int buildNumber;
     [SerializeField] private Transform camPos;
+    [SerializeField] private ScreenObject screenObj;
 
     private Transform player;
 	private Transform mainCamera;
@@ -12,22 +12,16 @@ public class ViewScreen : InteractableOption {
 	private bool zoomIn = false;
 
     // Use this for initialization
-    void Start(){
+    private void Start(){
 
         mainCamera = Camera.main.transform;
 	}
 
     private void Update()
     {
-
-        if (!InputChecker.instance.switchedMinigame && zoomIn && Input.GetKeyDown(KeyCode.E))
+        if (!InputChecker.instance.switchedMinigame && zoomIn)
         {
             InteractWithPlayer();
-            if (InputChecker.instance.wonMinigame)
-            {
-                InputChecker.instance.wonMinigame = false;
-                transform.tag = "Untagged";
-            }
         }
     }
 
@@ -43,6 +37,8 @@ public class ViewScreen : InteractableOption {
             prevRot = mainCamera.transform.localRotation;
             mainCamera.SetParent(camPos);
             InputChecker.instance.ButtonsEnabled = false;
+
+            SceneFade.instance.StartMinigame(this, screenObj.minigameIndex);
         }
         else
         {
@@ -53,14 +49,15 @@ public class ViewScreen : InteractableOption {
         StartCoroutine(MoveCamera(0.5f));
     }
 
-	// Update is called once per frame
-	IEnumerator MoveCamera(float overtime){
-        float elapsedTime = 0;
+    public void WonGame()
+    {
+        screenObj.wonGame = true;
+        transform.tag = "Untagged";
+    }
 
-        if (zoomIn)
-        {
-            SceneFade.instance.StartMinigame(buildNumber);
-        }
+	// Update is called once per frame
+	private IEnumerator MoveCamera(float overtime){
+        float elapsedTime = 0;
 
         while (elapsedTime < overtime) {
 			if (zoomIn) {

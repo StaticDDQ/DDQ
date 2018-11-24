@@ -14,6 +14,8 @@ public class SceneFade: MonoBehaviour {
     private bool waitLoad = false;
     private GameObject mainScene;
 
+    private ViewScreen activeScreen;
+
     // There is only one instance of this and will appear in every scene
     private void Awake()
     {
@@ -30,19 +32,25 @@ public class SceneFade: MonoBehaviour {
         DontDestroyOnLoad(this.gameObject);
     }
 
-    public void StartMinigame(int m)
+    public void StartMinigame(ViewScreen screen, int m)
     {
         if (!SceneManager.GetSceneByBuildIndex(m).isLoaded)
         {
+            activeScreen = screen;
             InputChecker.instance.switchedMinigame = true;
             StartCoroutine(LoadLevel(m, true));
         }
     }
 
-    public void EndMinigame(int m)
+    public void EndMinigame(int m, bool wonGame)
     {
         if (SceneManager.GetSceneByBuildIndex(m).isLoaded)
         {
+            if (wonGame)
+            {
+                activeScreen.WonGame();
+                activeScreen = null;
+            }
             StartCoroutine(UnloadLevel(m));
         }
     }

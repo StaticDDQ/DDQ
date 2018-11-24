@@ -24,7 +24,6 @@ GameObject:
   - component: {fileID: 65165008448623472}
   - component: {fileID: 54504597791544544}
   - component: {fileID: 114383758731750732}
-  - component: {fileID: 114223446245981278}
   m_Layer: 0
   m_Name: relic2
   m_TagString: pickUp
@@ -98,7 +97,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1613539370884942}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.8803338, y: 0.00000011920929, z: 2.4482872}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4933667731014550}
@@ -121,7 +120,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100002, guid: a8f38dc1883358e41b9f63e5a4127bd2, type: 3}
+  - {fileID: 2100000, guid: 18b6f3cec7d92a24ca97136125e2017a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -156,7 +155,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: a8f38dc1883358e41b9f63e5a4127bd2, type: 3}
+  - {fileID: 2100000, guid: 18b6f3cec7d92a24ca97136125e2017a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -231,20 +230,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.690001, y: 0.9703139, z: 1.5524998}
   m_Center: {x: 0.0000015050173, y: 0, z: 0}
---- !u!114 &114223446245981278
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1155885120212840}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 927386be8419ad648923f43959e5808f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemName: Relic1
-  sprite: {fileID: 21300000, guid: 060abf463f584ca409566651f8ae2742, type: 3}
-  prefabItem: {fileID: 1841316727429066, guid: 8353065fc9f148a49a022d6655e1d396, type: 2}
 --- !u!114 &114383758731750732
 MonoBehaviour:
   m_ObjectHideFlags: 1

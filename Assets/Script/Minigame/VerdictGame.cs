@@ -5,6 +5,7 @@ public class VerdictGame : MonoBehaviour {
 
     [SerializeField] private Sprite successSprite;
     [SerializeField] private Sprite failSprite;
+    private bool wonGame = false;
 
     // Play animation when either all enemies are destroyed or player is destroyed
     public void Verdict(bool isSuccess)
@@ -16,15 +17,20 @@ public class VerdictGame : MonoBehaviour {
         else
         {
             GetComponent<SpriteRenderer>().sprite = successSprite;
-            InputChecker.instance.wonMinigame = true;
+            wonGame = true;
         }
-        StartCoroutine(ShowVerdict(isSuccess));
+        StartCoroutine(ShowVerdict());
     }
 
-    private IEnumerator ShowVerdict(bool isSuccess)
+    private IEnumerator ShowVerdict()
     {
         GetComponent<Animator>().Play("VerdictAnim");
         yield return new WaitForSeconds(1);
         Time.timeScale = 0.0f;
+    }
+
+    public bool GetWonGame()
+    {
+        return this.wonGame;
     }
 }

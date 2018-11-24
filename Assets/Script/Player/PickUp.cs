@@ -52,6 +52,9 @@ public class PickUp : MonoBehaviour {
             if(carriedObj.tag != "pickUp")
             {
                 carriedObj.transform.LookAt(carriedObj.transform.position + mainCam.transform.rotation * Vector3.forward, mainCam.transform.rotation * Vector3.up);
+            } else if (Input.GetKeyDown(KeyCode.E))
+            {
+                Grab(carriedObj);
             }
 		} else
         {
@@ -59,7 +62,7 @@ public class PickUp : MonoBehaviour {
         }
 	}
 
-    void SetObjectCarry(GameObject obj, bool isCarry)
+    private void SetObjectCarry(GameObject obj, bool isCarry)
     {
         IndicatorMethod._instance.EnableIndicator(!isCarry);
         obj.GetComponent<Rigidbody>().useGravity = !isCarry;
@@ -85,23 +88,20 @@ public class PickUp : MonoBehaviour {
             if (!canGrab)
             {
                 return;
-            }
-            InputChecker.instance.ButtonsEnabled = false;
-            ShowObject(hitCollider, false);
+            }            
         }
-        else
-        {
-            InputChecker.instance.ButtonsEnabled = true;
-            ShowObject(hitCollider, true);
-        }
+
+        ShowObject(hitCollider, pressAgain);
+        InputChecker.instance.ButtonsEnabled = pressAgain;
         pressAgain = !pressAgain;
     }
 
     public void ShowObject(GameObject obj, bool hasShown)
     {
+        SetObjectCarry(obj, !hasShown);
+
         if (!hasShown)
-        {
-            SetObjectCarry(obj, true);
+        {   
             carriedObj.GetComponent<PickUpable>().canRotate = true;
             carriedObj.GetComponent<Collider>().enabled = false;
             carriedObj.layer = LayerMask.NameToLayer("pickUp");
@@ -109,8 +109,8 @@ public class PickUp : MonoBehaviour {
         else
         {
             Destroy(obj);
-            carriedObj = null;
         }
+
         mainCam.GetComponent<Blur>().enabled = !hasShown;
     }
 }

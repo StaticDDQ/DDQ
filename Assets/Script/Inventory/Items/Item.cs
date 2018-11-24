@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "Character", menuName = "Game Objects/Items")]
+[CreateAssetMenu(fileName = "Item", menuName = "Game Objects/Items")]
 public class Item : ScriptableObject {
 	
 	public Sprite sprite;
