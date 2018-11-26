@@ -26,7 +26,7 @@ public class ToggleController : MonoBehaviour {
         if(selectedSlot != null)
         {
             StartCoroutine(TakeScreenshot(selectedSlot, DateTime.Now.ToString()));
-            SaveSystem.instance.SaveGame(selectedSlot.GetIndex());
+            SaveSystem.instance.Save(selectedSlot.GetIndex());
             selectedSlot.SetHasSaveFile(true);
         }
     }
@@ -67,7 +67,7 @@ public class ToggleController : MonoBehaviour {
     {
         if (selectedSlot != null && selectedSlot.GetHasSaveFile())
         {
-            SaveSystem.instance.LoadGame(selectedSlot.GetIndex());
+            SaveSystem.instance.Load(selectedSlot.GetIndex());
         }
     }
 }

@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour {
     private Transform cam;
     private float speed;
 
-    [SerializeField] private Character character;
+    public Character character;
 
     [HideInInspector]
     private Vector3 moveDir = Vector3.zero;

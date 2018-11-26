@@ -36,6 +36,7 @@ public class PauseButton : MonoBehaviour {
         else
         {
             Time.timeScale = 1;
+            slotScreen.SetActive(false);
         }
         if (!Player.GetComponent<PickUp>().pressAgain)
         {

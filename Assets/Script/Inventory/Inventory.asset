@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Name: Inventory
   m_EditorClassIdentifier: 
   slots: 8
-  items: []
+  items:
+  - {fileID: 11400000, guid: 93685312a4715ec408b85d3328846b5c, type: 2}

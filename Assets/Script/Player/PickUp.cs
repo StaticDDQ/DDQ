@@ -108,7 +108,7 @@ public class PickUp : MonoBehaviour {
         }
         else
         {
-            Destroy(obj);
+            obj.GetComponent<SaveableObject>().DestroySaveable();
         }
 
         mainCam.GetComponent<Blur>().enabled = !hasShown;

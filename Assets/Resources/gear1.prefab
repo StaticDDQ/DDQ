@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114428211349891426}
   - component: {fileID: 65627547179122622}
   - component: {fileID: 114561795353807106}
+  - component: {fileID: 114301689757225006}
   m_Layer: 0
   m_Name: gear1
   m_TagString: pickUp
@@ -114,6 +115,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.630725, y: 3.630727, z: 0.29859805}
   m_Center: {x: 0.0000005364418, y: 0, z: 0}
+--- !u!114 &114301689757225006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1515360693538852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbcf82a345241d34291071a33eba68bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objName: gear1
 --- !u!114 &114428211349891426
 MonoBehaviour:
   m_ObjectHideFlags: 1
