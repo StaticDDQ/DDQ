@@ -1990,8 +1990,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c55892b819c64408e149170a882374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slotObj: {fileID: 11400000, guid: 6988b1958ce4f68468831f35ef8d42e0, type: 2}
   selectedColor: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
-  index: 2
 --- !u!114 &790672051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2264,6 +2264,47 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1049696558}
   m_CullTransparentMesh: 0
+--- !u!1 &1051152318
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1051152319}
+  - component: {fileID: 1051152320}
+  m_Layer: 0
+  m_Name: SaveManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1051152319
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1051152318}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1051152320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1051152318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b94ae06ea5b8a7a4198bf4cd596de63a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slotSaved: {fileID: 11400000, guid: b4326f008f8421f40a150c53c36789e3, type: 2}
 --- !u!1001 &1064750695
 Prefab:
   m_ObjectHideFlags: 0
@@ -2720,6 +2761,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18ff71107a580d04aba38c04d5dbcf0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slots:
+  - {fileID: 1984626607}
+  - {fileID: 1615154018}
+  - {fileID: 790672050}
+  - {fileID: 1788430838}
+  - {fileID: 1476705691}
+  - {fileID: 1388971899}
 --- !u!1 &1217480041
 GameObject:
   m_ObjectHideFlags: 0
@@ -3760,8 +3808,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c55892b819c64408e149170a882374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slotObj: {fileID: 11400000, guid: f223db7357dc6294ab7ea0d869849367, type: 2}
   selectedColor: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
-  index: 5
 --- !u!114 &1388971900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4248,8 +4296,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c55892b819c64408e149170a882374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slotObj: {fileID: 11400000, guid: c49b2bddcfa2f6e4da0a6acbafaff0e5, type: 2}
   selectedColor: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
-  index: 4
 --- !u!114 &1476705692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4837,8 +4885,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c55892b819c64408e149170a882374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slotObj: {fileID: 11400000, guid: 4067350e1f2dd924d8dec2f824825ca2, type: 2}
   selectedColor: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
-  index: 1
 --- !u!114 &1615154019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5548,8 +5596,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c55892b819c64408e149170a882374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slotObj: {fileID: 11400000, guid: 78b23dc46f3c5784a8f7092aec519791, type: 2}
   selectedColor: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
-  index: 3
 --- !u!114 &1788430839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6618,8 +6666,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c55892b819c64408e149170a882374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slotObj: {fileID: 11400000, guid: 77220cdf6a0b0704594248a5a9ce281d, type: 2}
   selectedColor: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
-  index: 0
 --- !u!1 &2013270440
 GameObject:
   m_ObjectHideFlags: 0

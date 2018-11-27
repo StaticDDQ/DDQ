@@ -30,17 +30,8 @@ public class SaveSystem : MonoBehaviour {
         DontDestroyOnLoad(this);
     }
 
-    public bool IsSavedFile()
-    {
-        return Directory.Exists(Application.persistentDataPath + "/game_save");
-    }
-
     public void Save(int slotIndex)
     {
-        if (!IsSavedFile())
-        {
-            Directory.CreateDirectory(Application.persistentDataPath + "/game_save");
-        }
         if (!Directory.Exists(Application.persistentDataPath + "/game_save/game_data" + slotIndex))
         {
             Directory.CreateDirectory(Application.persistentDataPath + "/game_save/game_data" + slotIndex);

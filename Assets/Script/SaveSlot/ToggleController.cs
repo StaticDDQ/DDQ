@@ -1,16 +1,21 @@
-﻿using System.Collections;
-using System;
+﻿using System;
 using UnityEngine;
+using System.Collections;
 
 public class ToggleController : MonoBehaviour {
 
     private SaveSlot selectedSlot;
     private Camera mainCam;
     private Texture2D screenshot;
+    [SerializeField] private SaveSlot[] slots;
 
     private void Start()
     {
         mainCam = Camera.main;
+        foreach (SlotObject slot in SaveSlotManager.instance.GetSlots())
+        {
+            slots[slot.index].SetData(slot.screenshotBytes,slot.dateSaved);
+        }
     }
 
     public void SetSelectedSlot(SaveSlot slot)
@@ -27,7 +32,6 @@ public class ToggleController : MonoBehaviour {
         {
             StartCoroutine(TakeScreenshot(selectedSlot, DateTime.Now.ToString()));
             SaveSystem.instance.Save(selectedSlot.GetIndex());
-            selectedSlot.SetHasSaveFile(true);
         }
     }
 
@@ -48,9 +52,9 @@ public class ToggleController : MonoBehaviour {
 
         Destroy(rt);
 
-        Sprite tempSprite = Sprite.Create(screenshot, new Rect(0, 0, Screen.width, Screen.height), new Vector2(0, 0));
+        slot.SetData(screenshot.EncodeToPNG(), date);
 
-        slot.SetData(tempSprite, date);
+        SaveSlotManager.instance.AddSaveSlot(slot.GetSlotObject());
     }
 
     public void DeleteSlot()
@@ -58,8 +62,8 @@ public class ToggleController : MonoBehaviour {
         if(selectedSlot != null && selectedSlot.GetHasSaveFile())
         {
             SaveSystem.instance.DeleteGame(selectedSlot.GetIndex());
-            selectedSlot.SetData(null, "");
-            selectedSlot.SetHasSaveFile(false);
+            SaveSlotManager.instance.RemoveSaveSlot(selectedSlot.GetSlotObject().index);
+            selectedSlot.SetData(null,"");
         }
     }
 

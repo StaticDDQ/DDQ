@@ -3,14 +3,13 @@ using UnityEngine.UI;
 
 public class SaveSlot : MonoBehaviour {
 
+    [SerializeField] private SlotObject slotObj;
     [SerializeField] private Color selectedColor;
-    [SerializeField] private int index;
+    private Color defaultColor;
+
     private ToggleController controller;
     private Toggle mToggle;
     private GameObject dataControl;
-    private Color defaultColor;
-
-    private bool hasSaveFile = false;
 
     // Use this for initialization
     void Awake() {
@@ -39,16 +38,16 @@ public class SaveSlot : MonoBehaviour {
         }
     }
 
-    public void SetData(Sprite img, string date)
+    public void SetData(byte[] imgByte, string date)
     {
-        if(img != null)
-        {
-            dataControl.SetActive(true);
-        } else
-        {
-            dataControl.SetActive(false);
-        }
-        dataControl.GetComponent<SavedGame>().SetSavedGame(img, date);
+
+        dataControl.SetActive(!date.Equals(""));
+        slotObj.hasSavedFile = !date.Equals("");
+
+        slotObj.screenshotBytes = imgByte;
+        slotObj.dateSaved = date;
+
+        dataControl.GetComponent<SavedGame>().SetSavedGame(imgByte,date);
     }
 
     public void TurnToggleOff()
@@ -59,16 +58,16 @@ public class SaveSlot : MonoBehaviour {
 
     public bool GetHasSaveFile()
     {
-        return this.hasSaveFile;
-    }
-
-    public void SetHasSaveFile(bool savedFile)
-    {
-        this.hasSaveFile = savedFile;
+        return this.slotObj.hasSavedFile;
     }
 
     public int GetIndex()
     {
-        return this.index;
+        return this.slotObj.index;
+    }
+
+    public SlotObject GetSlotObject()
+    {
+        return this.slotObj;
     }
 }
