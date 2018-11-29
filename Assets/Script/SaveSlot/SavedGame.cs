@@ -8,9 +8,15 @@ public class SavedGame : MonoBehaviour {
 
 	public void SetSavedGame(byte[] screenBytes, string date)
     {
-        Texture2D tex = new Texture2D(Screen.width,Screen.height);
-        tex.LoadImage(screenBytes);
-        screenshot.sprite = Sprite.Create(tex, new Rect(0, 0, Screen.width, Screen.height), new Vector2(0, 0));
+        if (date.Equals(""))
+        {
+            screenshot.sprite = null;
+        } else
+        {
+            Texture2D tex = new Texture2D(Screen.width, Screen.height);
+            tex.LoadImage(screenBytes);
+            screenshot.sprite = Sprite.Create(tex, new Rect(0, 0, Screen.width, Screen.height), new Vector2(0, 0));
+        }
         dateSaved.text = date;
     }
 }

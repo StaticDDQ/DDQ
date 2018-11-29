@@ -36,6 +36,7 @@ public class ItemUsable : MonoBehaviour {
 
         GetComponent<Animator>().Play("gearlockAnim");
         inventory.openInventory(false);
+        parentItem.GetComponent<ChildSaveableObject>().SetDir(currItem.name);
     }
 
     public void RemoveItem()

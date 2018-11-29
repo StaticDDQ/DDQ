@@ -20,4 +20,9 @@ public class ChildSaveableObject : MonoBehaviour {
     {
         return this.childObjDir;
     }
+
+    public void SetDir(string dir)
+    {
+        this.childObjDir = dir;
+    }
 }

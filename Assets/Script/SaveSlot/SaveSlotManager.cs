@@ -59,6 +59,10 @@ public class SaveSlotManager : MonoBehaviour {
 
     public void AddSaveSlot(SlotObject slot)
     {
+        if (slotSaved.slotObjectList.Contains(slot))
+        {
+            slotSaved.slotObjectList.Remove(slot);
+        }
         slotSaved.slotObjectList.Add(slot);
         SaveList();
     }

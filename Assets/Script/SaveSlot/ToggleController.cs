@@ -30,8 +30,8 @@ public class ToggleController : MonoBehaviour {
     {
         if(selectedSlot != null)
         {
-            StartCoroutine(TakeScreenshot(selectedSlot, DateTime.Now.ToString()));
             SaveSystem.instance.Save(selectedSlot.GetIndex());
+            StartCoroutine(TakeScreenshot(selectedSlot, DateTime.Now.ToString()));
         }
     }
 

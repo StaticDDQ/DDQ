@@ -62,13 +62,15 @@ public class SaveSystem : MonoBehaviour {
         #endregion
 
         #region items
-        FileStream itemFile = File.Create(Application.persistentDataPath + "/game_save/game_data" + slotIndex + "/item0.dat");
+
         ItemData itemData = new ItemData();
 
         for (int i = 0; i < saveObjects.Count; i++)
         {
             if (saveObjects[i].gameObject != null)
             {
+                FileStream itemFile = File.Create(Application.persistentDataPath + "/game_save/game_data" + slotIndex + "/item" + (itemCount++) + ".dat");
+
                 itemData.objDir = saveObjects[i].GetName();
                 itemData.x = saveObjects[i].transform.position.x;
                 itemData.y = saveObjects[i].transform.position.y;
@@ -79,27 +81,24 @@ public class SaveSystem : MonoBehaviour {
                 itemData.rotW = saveObjects[i].transform.rotation.w;
 
                 bf.Serialize(itemFile, itemData);
-
-                itemFile = File.Create(Application.persistentDataPath + "/game_save/game_data" + slotIndex + "/item" + (++itemCount) + ".dat");
-            }
+                itemFile.Close();
+            } 
         }
-        itemFile.Close();
+
         #endregion
 
-        FileStream childFile = File.Create(Application.persistentDataPath + "/game_save/game_data" + slotIndex + "/child0.dat");
+        #region childData
         ChildData childData = new ChildData();
 
         for (int i = 0; i < childSaveObjects.Count; i++)
         {
+            FileStream childFile = File.Create(Application.persistentDataPath + "/game_save/game_data" + slotIndex + "/child" + i + ".dat");
+
             childData.objDir = childSaveObjects[i].GetDir();
 
             bf.Serialize(childFile, childData);
-
-            childFile = File.Create(Application.persistentDataPath + "/game_save/game_data" + slotIndex + "/child" + (i + 1) + ".dat");
+            childFile.Close();
         }
-        childFile.Close();
-        #region childData
-
         #endregion
     }
 
@@ -136,10 +135,10 @@ public class SaveSystem : MonoBehaviour {
         }
 
         saveObjects.Clear();
-        FileStream itemFile = File.Open(Application.persistentDataPath + "/game_save/game_data" + slotIndex + "/item0.dat", FileMode.Open);
 
         for (int i = 0; i < itemCount; i++)
         {
+            FileStream itemFile = File.Open(Application.persistentDataPath + "/game_save/game_data" + slotIndex + "/item" + i + ".dat", FileMode.Open);
 
             ItemData itemData = (ItemData)bf.Deserialize(itemFile);
             GameObject tmp = Instantiate(Resources.Load(itemData.objDir) as GameObject);
@@ -150,24 +149,20 @@ public class SaveSystem : MonoBehaviour {
                 Quaternion newRot = new Quaternion(itemData.rotX, itemData.rotY, itemData.rotZ, itemData.rotW);
                 tmp.GetComponent<SaveableObject>().Load(newPos, newRot);
             }
-            itemFile = File.Open(Application.persistentDataPath + "/game_save/game_data" + slotIndex + "/item" + (i+1) + ".dat", FileMode.Open);
+            itemFile.Close();
         }
 
-        itemFile.Close();
         #endregion
 
         #region childData
-        FileStream childFile = File.Open(Application.persistentDataPath + "/game_save/game_data" + slotIndex + "/child0.dat", FileMode.Open);
-
         for(int i = 0; i < childSaveObjects.Count; i++)
         {
+            FileStream childFile = File.Open(Application.persistentDataPath + "/game_save/game_data" + slotIndex + "/child" + i + ".dat", FileMode.Open);
+
             ChildData childData = (ChildData)bf.Deserialize(childFile);
             childSaveObjects[i].SetChild(childData.objDir);
-
-            childFile = File.Open(Application.persistentDataPath + "/game_save/game_data" + slotIndex + "/child" + (i+1) + ".dat", FileMode.Open);
+            childFile.Close();
         }
-
-        childFile.Close();
         #endregion
     }
 
