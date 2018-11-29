@@ -1,64 +1,70 @@
 ﻿using UnityEngine;
+using UnityStandardAssets.ImageEffects;
 
 public class InventoryUI : MonoBehaviour {
 
-	[SerializeField] private GameObject cancelButton, useButton, inspectButton;
+	[SerializeField] private GameObject itemsParent, cancelButton, useButton, inspectButton;
 
 	public bool inventoryOn = false;
-    private bool inspectOn = false;
-    private Item itemToUse;
-	private GameObject useOn;
-	private GameObject itemClone = null;
+    public ItemUsable canUse;
 
-    private GameObject player;
-    private GameObject itemsParent;
-    private ItemDB inventoryDB;
+    private bool inspectOn = false;
+
+	private GameObject itemClone = null;
     private InventorySlot[] slots;
 
-    // Use this for initialization
-    void Start () {
-		inventoryDB = ItemDB._instance;
+    private Item itemToUse;
+    private Camera mainCam;
 
-        player = GameObject.FindGameObjectWithTag("Player");
-        itemsParent = transform.GetChild(0).gameObject;
+    // Use this for initialization
+    private void Start () {
+        mainCam = Camera.main;
+
         slots = itemsParent.GetComponentsInChildren<InventorySlot>();
-        UpdateUI();
     }
 
-	void Update(){
-		if(!InputChecker.instance.switchedMinigame && !player.GetComponent<PickUp>().pressAgain && Time.timeScale == 1 && Input.GetKeyDown(KeyCode.I)) {
+	private void Update(){
+		if(!InputChecker.instance.switchedMinigame && Time.timeScale == 1 && Input.GetKeyDown(KeyCode.I)) {
 
-			inventoryOn = !itemsParent.activeInHierarchy;
-            InputChecker.instance.ButtonsEnabled = !inventoryOn;
-            openInventory (inventoryOn);
-            UpdateUI();
-			if (inspectOn) {
+            openInventory(!inventoryOn);
+            if (inspectOn) {
 				DisableInspect ();
 			}
 		}
 	}
 
 	public void openInventory(bool turnOn){
+        inventoryOn = turnOn;
+
+        UpdateUI();
         itemsParent.SetActive (turnOn);
-		IndicatorMethod._instance.EnableIndicator (!inventoryOn);
+
+        InputChecker.instance.ButtonsEnabled = !turnOn;
+        IndicatorMethod._instance.EnableIndicator (!inventoryOn);
         PauseButton.instance.ToggleCursorState (turnOn);
 
 		Cancel ();
+
+        if (!turnOn)
+            canUse = null;
 	}
 	
 	public void InteractItem(Item i){
 		itemToUse = i;
+
 		cancelButton.SetActive (true);
-		if (useOn != null)
-			useButton.SetActive (true);
-		else
-			inspectButton.SetActive (true);
+        inspectButton.SetActive(true);
+
+        if (canUse != null)
+        {
+            useButton.SetActive(true);
+        }
 	}
 
 	private void UpdateUI(){
 		for (int i = 0; i < slots.Length; i++) {
-			if (i < inventoryDB.containedItems.Count) {
-				slots [i].AddItem (inventoryDB.containedItems[i]);
+			if (i < ItemDB._instance.containedItems.Count) {
+				slots [i].AddItem (ItemDB._instance.containedItems[i]);
 			} else {
 				slots [i].ClearSlot ();
 			}
@@ -73,34 +79,50 @@ public class InventoryUI : MonoBehaviour {
 
 	public void UseButton(){
 
-		if (useOn != null) {
-			
-			if(useOn.GetComponent<ItemUsable>().SetTrue(itemToUse)){
+        if (itemToUse != null && canUse.ValidItem(itemToUse.defType))
+        {
+            canUse.ApplyItem(itemToUse);
+            canUse = null;
+            ItemDB._instance.RemoveItem(itemToUse);
+            UpdateUI();
+        }
 
-				ItemDB._instance.RemoveItem(itemToUse);
-				useOn = null;
-			}
-		}
-		openInventory (false);
-		Cancel ();
+        Cancel();
 	}
 
 	public void InspectButton(){
-		inspectOn = true;
-        itemClone = Instantiate(itemToUse.prefabItem, player.transform.position + player.transform.forward, player.transform.rotation);
-        player.GetComponent<PickUp>().ShowObject(itemClone, false);
-		openInventory (false);
-	}
+        inspectOn = true;
+        itemClone = Instantiate(itemToUse.prefabItem, mainCam.transform.position + mainCam.transform.forward, Quaternion.identity);
+
+        ShowObject(itemClone, true);
+        itemsParent.SetActive(false);
+
+        Cancel();
+    }
 
 	private void DisableInspect(){
-        player.GetComponent<PickUp>().ShowObject(itemClone, true);
-		Destroy (itemClone);
-		openInventory (true);
-		inventoryOn = true;
-		inspectOn = false;
-	}
+        inspectOn = false;
+        ShowObject(itemClone, false);
+    }
 
-	public void SetUseOn(GameObject t){
-		this.useOn = t;
-	}
+    private void ShowObject(GameObject obj, bool toShow)
+    {
+        if (toShow)
+        {
+            obj.transform.SetParent(mainCam.transform.parent.transform);
+
+            obj.GetComponent<PickUpable>().canRotate = true;
+            obj.GetComponent<Collider>().enabled = false;
+            obj.layer = LayerMask.NameToLayer("pickUp");
+            obj.GetComponent<Rigidbody>().useGravity = false;
+            obj.GetComponent<PickUpable>().carrying = true;
+        }
+        else
+        {
+            Destroy(obj);
+        }
+
+        IndicatorMethod._instance.EnableIndicator(!toShow);
+        mainCam.GetComponent<Blur>().enabled = toShow;
+    }
 }

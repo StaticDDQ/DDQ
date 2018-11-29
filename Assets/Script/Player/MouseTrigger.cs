@@ -23,12 +23,7 @@ public class MouseTrigger : MonoBehaviour {
 
 			if (InputChecker.instance.ButtonsEnabled && Input.GetKeyDown ("e")) {
 				if (hit.collider.tag == "interactable") {
-					if (hit.collider.GetComponent<ItemUsable> ().getCanUse()) {
-						hit.collider.GetComponent<ItemUsable> ().Interact ();
-					} else {
-						FindObjectOfType<InventoryUI> ().SetUseOn (hit.collider.gameObject);
-						FindObjectOfType<InventoryUI> ().openInventory (true);
-					}
+					hit.collider.GetComponent<ItemUsable> ().Interact ();
 				} else if (hit.collider.tag == "interactable2") {
 					hit.collider.GetComponent<InteractableOption> ().InteractWithPlayer ();
 				} 

@@ -3,16 +3,45 @@
 // Method used to have an object interact with different types of items
 public class ItemUsable : MonoBehaviour {
 
-	protected bool canUse = false;
+    private Item currItem;
+    private GameObject prefabItem;
+    [SerializeField] private ItemType correctType;
+    [SerializeField] private InventoryUI inventory;
+    [SerializeField] private Transform parentItem;
 
-    public virtual void Interact(){}
-		
-	public virtual bool SetTrue (Item item) {
-		return false;
-	}
+    public void Interact(){
+        if (currItem == null)
+        {
+            inventory.openInventory(true);
+            inventory.canUse = this;
+        } else
+        {
+            RemoveItem();
+        }
+    }
 
-    public bool getCanUse()
+    public bool ValidItem(ItemType itemType)
     {
-        return this.canUse;
+        return correctType == itemType;
+    }
+
+    public void ApplyItem(Item newItem)
+    {
+        currItem = newItem;
+        prefabItem = Instantiate(newItem.prefabItem, parentItem);
+        prefabItem.transform.localPosition = Vector3.zero;
+        prefabItem.GetComponent<Rigidbody>().isKinematic = true;
+        prefabItem.transform.localRotation = Quaternion.identity;
+        prefabItem.transform.localScale = new Vector3(1, 1, 1);
+
+        GetComponent<Animator>().Play("gearlockAnim");
+        inventory.openInventory(false);
+    }
+
+    public void RemoveItem()
+    {
+        ItemDB._instance.AddItem(currItem);
+        Destroy(prefabItem);
+        currItem = null;
     }
 }

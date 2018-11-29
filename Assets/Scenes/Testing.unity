@@ -2411,10 +2411,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a339c5e44a14e4593d68ff1ab69b1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemsParent: {fileID: 1282901534}
   cancelButton: {fileID: 1788175441}
   useButton: {fileID: 1478777387}
   inspectButton: {fileID: 1937453116}
   inventoryOn: 0
+  canUse: {fileID: 0}
 --- !u!114 &1065815814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7266,14 +7268,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4772638577832690, guid: 12701290d6488b34a9d6b005d39ba36e, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -2.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4005236406800830, guid: 12701290d6488b34a9d6b005d39ba36e, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -2.3
-      objectReference: {fileID: 0}
+    - target: {fileID: 114858563519227212, guid: 12701290d6488b34a9d6b005d39ba36e,
+        type: 2}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 1065815813}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12701290d6488b34a9d6b005d39ba36e, type: 2}
   m_IsPrefabAsset: 0

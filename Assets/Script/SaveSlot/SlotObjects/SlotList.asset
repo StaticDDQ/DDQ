@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Name: SlotList
   m_EditorClassIdentifier: 
   slotObjectList:
-  - {fileID: 11400000, guid: f223db7357dc6294ab7ea0d869849367, type: 2}
-  - {fileID: 11400000, guid: 4067350e1f2dd924d8dec2f824825ca2, type: 2}
+  - {fileID: 11400000, guid: 77220cdf6a0b0704594248a5a9ce281d, type: 2}

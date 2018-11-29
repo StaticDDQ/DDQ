@@ -8,6 +8,7 @@ public class SaveSystem : MonoBehaviour {
 
     public static SaveSystem instance;
     public List<SaveableObject> saveObjects { get; set; }
+    public List<ChildSaveableObject> childSaveObjects { get; set; }
 
     [SerializeField] private Inventory inventoryData;
     [SerializeField] private GameObject player;
@@ -16,6 +17,7 @@ public class SaveSystem : MonoBehaviour {
     private void Awake()
     {
         saveObjects = new List<SaveableObject>();
+        childSaveObjects = new List<ChildSaveableObject>();
 
         if (instance == null)
         {
@@ -83,6 +85,22 @@ public class SaveSystem : MonoBehaviour {
         }
         itemFile.Close();
         #endregion
+
+        FileStream childFile = File.Create(Application.persistentDataPath + "/game_save/game_data" + slotIndex + "/child0.dat");
+        ChildData childData = new ChildData();
+
+        for (int i = 0; i < childSaveObjects.Count; i++)
+        {
+            childData.objDir = childSaveObjects[i].GetDir();
+
+            bf.Serialize(childFile, childData);
+
+            childFile = File.Create(Application.persistentDataPath + "/game_save/game_data" + slotIndex + "/child" + (i + 1) + ".dat");
+        }
+        childFile.Close();
+        #region childData
+
+        #endregion
     }
 
     public void Load(int slotIndex)
@@ -124,7 +142,6 @@ public class SaveSystem : MonoBehaviour {
         {
 
             ItemData itemData = (ItemData)bf.Deserialize(itemFile);
-            print(itemData.objDir);
             GameObject tmp = Instantiate(Resources.Load(itemData.objDir) as GameObject);
 
             if(tmp != null)
@@ -133,9 +150,24 @@ public class SaveSystem : MonoBehaviour {
                 Quaternion newRot = new Quaternion(itemData.rotX, itemData.rotY, itemData.rotZ, itemData.rotW);
                 tmp.GetComponent<SaveableObject>().Load(newPos, newRot);
             }
+            itemFile = File.Open(Application.persistentDataPath + "/game_save/game_data" + slotIndex + "/item" + (i+1) + ".dat", FileMode.Open);
         }
 
         itemFile.Close();
+        #endregion
+
+        #region childData
+        FileStream childFile = File.Open(Application.persistentDataPath + "/game_save/game_data" + slotIndex + "/child0.dat", FileMode.Open);
+
+        for(int i = 0; i < childSaveObjects.Count; i++)
+        {
+            ChildData childData = (ChildData)bf.Deserialize(childFile);
+            childSaveObjects[i].SetChild(childData.objDir);
+
+            childFile = File.Open(Application.persistentDataPath + "/game_save/game_data" + slotIndex + "/child" + (i+1) + ".dat", FileMode.Open);
+        }
+
+        childFile.Close();
         #endregion
     }
 
@@ -175,6 +207,12 @@ public class SaveSystem : MonoBehaviour {
 
         return new Quaternion(float.Parse(pos[0]), float.Parse(pos[1]), float.Parse(pos[2]), float.Parse(pos[3]));
     } */
+}
+
+[Serializable]
+class ChildData
+{
+    public string objDir;
 }
 
 [Serializable]

@@ -7,11 +7,9 @@ public class PauseButton : MonoBehaviour {
     [SerializeField] private GameObject slotScreen;
 	private bool pauseGame = false;
 	private bool cursorLocked = true;
-    private GameObject Player;
 
     private void Awake()
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
         if (instance != null)
         {
             return;
@@ -38,10 +36,8 @@ public class PauseButton : MonoBehaviour {
             Time.timeScale = 1;
             slotScreen.SetActive(false);
         }
-        if (!Player.GetComponent<PickUp>().pressAgain)
-        {
-            InputChecker.instance.ButtonsEnabled = !openMenu;
-        }
+        InputChecker.instance.ButtonsEnabled = !openMenu;
+        
         // Enable cursor to be seen if it is paused
         ToggleCursorState (openMenu);
 		pauseGame = openMenu;

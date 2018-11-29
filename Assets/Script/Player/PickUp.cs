@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityStandardAssets.ImageEffects;
 
 public class PickUp : MonoBehaviour {
 
@@ -9,7 +8,6 @@ public class PickUp : MonoBehaviour {
     [SerializeField] private float rayLength = 2f;
 
     private GameObject carriedObj;
-    public bool pressAgain = false;
     private bool isCarrying = false;
 
     private void Start()
@@ -18,6 +16,7 @@ public class PickUp : MonoBehaviour {
     }
 
     void setIsCarry(){
+
         if (InputChecker.instance.ButtonsEnabled && Input.GetKeyDown(KeyCode.E))
         {
             int x = Screen.width / 2;
@@ -45,17 +44,11 @@ public class PickUp : MonoBehaviour {
 	}
 
 	// Update is called once per frame
-	void Update () {
+	private void Update () {
 
 		if (carriedObj != null && carriedObj.GetComponent<PickUpable>().carrying) {
             carriedObj.transform.position = Vector3.Lerp(carriedObj.transform.position, mainCam.position + mainCam.forward * dist, Time.deltaTime * rotSpeed);
-            if(carriedObj.tag != "pickUp")
-            {
-                carriedObj.transform.LookAt(carriedObj.transform.position + mainCam.transform.rotation * Vector3.forward, mainCam.transform.rotation * Vector3.up);
-            } else if (Input.GetKeyDown(KeyCode.E))
-            {
-                Grab(carriedObj);
-            }
+            carriedObj.transform.LookAt(carriedObj.transform.position + mainCam.transform.rotation * Vector3.forward, mainCam.transform.rotation * Vector3.up);
 		} else
         {
             setIsCarry();
@@ -82,35 +75,11 @@ public class PickUp : MonoBehaviour {
 
 	private void Grab(GameObject hitCollider)
     {
-        if (!pressAgain)
+        bool canGrab = ItemDB._instance.AddItem(hitCollider.gameObject.GetComponent<ItemHolder>().GetItem());
+        if (!canGrab)
         {
-            bool canGrab = ItemDB._instance.AddItem(hitCollider.gameObject.GetComponent<ItemHolder>().GetItem());
-            if (!canGrab)
-            {
-                return;
-            }            
+            return;
         }
-
-        ShowObject(hitCollider, pressAgain);
-        InputChecker.instance.ButtonsEnabled = pressAgain;
-        pressAgain = !pressAgain;
-    }
-
-    public void ShowObject(GameObject obj, bool hasShown)
-    {
-        SetObjectCarry(obj, !hasShown);
-
-        if (!hasShown)
-        {   
-            carriedObj.GetComponent<PickUpable>().canRotate = true;
-            carriedObj.GetComponent<Collider>().enabled = false;
-            carriedObj.layer = LayerMask.NameToLayer("pickUp");
-        }
-        else
-        {
-            obj.GetComponent<SaveableObject>().DestroySaveable();
-        }
-
-        mainCam.GetComponent<Blur>().enabled = !hasShown;
+        hitCollider.GetComponent<SaveableObject>().DestroySaveable();
     }
 }

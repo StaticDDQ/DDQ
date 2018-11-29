@@ -2,7 +2,7 @@
 
 public class SaveableObject : MonoBehaviour {
 
-    [SerializeField] private string objName;
+    [SerializeField] protected string objName;
 
 	// Use this for initialization
 	private void Start () {
