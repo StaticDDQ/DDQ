@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 58315379259202886}
   - component: {fileID: 114332661255345536}
   - component: {fileID: 95953709519330994}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: enemyShoot
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -65,7 +65,7 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1120929876700132}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: edef621b11a998f46a6de9f82a64d7d6, type: 2}
   m_CullingMode: 0
@@ -87,13 +87,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a738b74ae691e004cbf1df0621e66be3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  listener: {fileID: 0}
   maxHealth: 2
   bulletSprite: {fileID: 1024923849659212, guid: 293060dc21eb71c488c028470a39c098,
     type: 2}
-  bulletSpeed: 7
   fireRate: 1
-  delayTime: 0
 --- !u!212 &212454891510522074
 SpriteRenderer:
   m_ObjectHideFlags: 1

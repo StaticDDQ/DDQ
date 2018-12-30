@@ -1,17 +1,21 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class TranslateSprite : SpriteAction {
 
-    [SerializeField] private int dir = 1;
     [SerializeField] private float speed;
+    private Rigidbody2D rb;
+    private int dir = 1;
 
-	// Update is called once per frame
-	private void Update () {
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
-        if (canDo)
-        {
-            GetComponent<Rigidbody2D>().velocity = transform.up * speed * dir;
-        }
+    // Update is called once per frame
+    private void Update () {
+        if(canDo)
+            rb.velocity = transform.up * speed * dir;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

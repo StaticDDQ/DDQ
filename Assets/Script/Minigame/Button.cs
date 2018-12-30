@@ -9,11 +9,11 @@ public class Button : MonoBehaviour {
     private bool isPressed = false;
 
 	// Use this for initialization
-	void Start () {
+	private void Start () {
     	unpressed = GetComponent<SpriteRenderer>().sprite;
 	}
 
-    public void PressedButton()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         isPressed = !isPressed;
         if (isPressed)

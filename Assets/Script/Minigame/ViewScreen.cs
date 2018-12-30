@@ -4,7 +4,7 @@ using UnityEngine;
 public class ViewScreen : InteractableOption {
 
     [SerializeField] private Transform camPos;
-    [SerializeField] private ScreenObject screenObj;
+    [SerializeField] private int screenIndex;
 
     private Transform player;
 	private Transform mainCamera;
@@ -38,7 +38,7 @@ public class ViewScreen : InteractableOption {
             mainCamera.SetParent(camPos);
             InputChecker.instance.ButtonsEnabled = false;
 
-            SceneFade.instance.StartMinigame(this, screenObj.minigameIndex);
+            SceneFade.instance.StartMinigame(this, screenIndex);
         }
         else
         {
@@ -51,7 +51,6 @@ public class ViewScreen : InteractableOption {
 
     public void WonGame()
     {
-        screenObj.wonGame = true;
         transform.tag = "Untagged";
     }
 

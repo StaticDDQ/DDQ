@@ -12,9 +12,12 @@ public class InventorySlot : MonoBehaviour {
 
 	public void AddItem(Item i){
 
-		currentItem = i;
-		icon.sprite = currentItem.sprite;
-		icon.enabled = true;
+        currentItem = i;
+        if (i != null)
+        {
+            icon.sprite = currentItem.sprite;
+            icon.enabled = true;
+        }
 	}
 
 	public void ClearSlot(){

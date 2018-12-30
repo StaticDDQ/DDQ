@@ -26,6 +26,9 @@ public class InventoryUI : MonoBehaviour {
 	private void Update(){
 		if(!InputChecker.instance.switchedMinigame && Time.timeScale == 1 && Input.GetKeyDown(KeyCode.I)) {
 
+            InputChecker.instance.ButtonsEnabled = inventoryOn;
+            PauseButton.instance.ToggleCursorState(!inventoryOn);
+
             openInventory(!inventoryOn);
             if (inspectOn) {
 				DisableInspect ();
@@ -39,9 +42,7 @@ public class InventoryUI : MonoBehaviour {
         UpdateUI();
         itemsParent.SetActive (turnOn);
 
-        InputChecker.instance.ButtonsEnabled = !turnOn;
         IndicatorMethod._instance.EnableIndicator (!inventoryOn);
-        PauseButton.instance.ToggleCursorState (turnOn);
 
 		Cancel ();
 
@@ -112,10 +113,10 @@ public class InventoryUI : MonoBehaviour {
             obj.transform.SetParent(mainCam.transform.parent.transform);
 
             obj.GetComponent<PickUpable>().canRotate = true;
-            obj.GetComponent<Collider>().enabled = false;
-            obj.layer = LayerMask.NameToLayer("pickUp");
-            obj.GetComponent<Rigidbody>().useGravity = false;
             obj.GetComponent<PickUpable>().carrying = true;
+
+            obj.GetComponent<Rigidbody>().isKinematic = true;
+            obj.layer = LayerMask.NameToLayer("pickUp");
         }
         else
         {

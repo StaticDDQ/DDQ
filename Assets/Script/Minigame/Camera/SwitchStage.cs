@@ -1,32 +1,36 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class SwitchStage : MonoBehaviour {
 
-    [SerializeField] private Transform mapPlayer;
-    [SerializeField] private GameObject mapStage;
-    [SerializeField] private GameObject cam;
-    private bool newStage = false;
+    private Camera cam;
+    private EnemyManager em;
+    private bool firstTimeEnter = true;
+    private bool hasSpawned = false;
+    [SerializeField] private Image stageImg;
+
+    private void Start()
+    {
+        cam = Camera.main;
+        em = GetComponent<EnemyManager>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")
         {
             cam.GetComponent<CameraFocus>().pos = new Vector3(transform.position.x, transform.position.y,100);
-            GetComponent<StageManager>().EnableEnemies();
-            if (!newStage)
+            if (firstTimeEnter)
             {
-                newStage = true;
-                mapStage.SetActive(true);
-            }
-            mapPlayer.position = mapStage.transform.position;
-        }
-    }
+                firstTimeEnter = false;
+                RoomTemplate.instance.SpawnRoomUI(stageImg, transform.position * 5);
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "Player")
-        {
-            GetComponent<StageManager>().DisableEnemies();
+                if (em != null && !hasSpawned)
+                {
+                    hasSpawned = true;
+                    em.StartSpawning();
+                }
+            }
         }
     }
 }

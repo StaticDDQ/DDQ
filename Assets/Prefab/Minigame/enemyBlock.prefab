@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 61662526358497990}
   - component: {fileID: 95999596741644058}
   - component: {fileID: 114597166042839442}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: enemyBlock
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1150407127765992}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 7f28abede3f7a1843bbf78d30e9f7a2f, type: 2}
   m_CullingMode: 0

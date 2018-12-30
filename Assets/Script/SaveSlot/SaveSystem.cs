@@ -64,6 +64,7 @@ public class SaveSystem : MonoBehaviour {
         #region items
 
         ItemData itemData = new ItemData();
+        itemCount = 0;
 
         for (int i = 0; i < saveObjects.Count; i++)
         {
@@ -84,7 +85,6 @@ public class SaveSystem : MonoBehaviour {
                 itemFile.Close();
             } 
         }
-
         #endregion
 
         #region childData

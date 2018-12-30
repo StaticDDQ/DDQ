@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114631756994815486}
   - component: {fileID: 58942175840306832}
   - component: {fileID: 50691416162864786}
-  m_Layer: 12
+  m_Layer: 14
   m_Name: EnemyProjectile
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -90,6 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isEnemy: 1
+  bulletSpeed: 10
 --- !u!212 &212717360598905906
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour {
 
-    [SerializeField] protected GameObject listener;
 	[SerializeField] protected int maxHealth = 2;
+    protected EnemyManager manager;
     protected int currHealth;
     protected bool canShoot = false;
 
@@ -14,32 +13,29 @@ public class EnemyMovement : MonoBehaviour {
 	}
 
     // Play explode animation when health reaches to 0
-	public virtual void TakeDamage(){
+	public void TakeDamage(){
 		currHealth -= 1;
 		if (currHealth == 0) {
 
-            if (listener != null)
-            {
-                listener.GetComponent<EliminateEnemies>().RemoveEnemy();
-            }
-
             canShoot = false;
-            StartCoroutine(Explode());
+            Explode();
         }
 	}
 
     // Explode animation, temporary uninteractable for 1 second
-    protected IEnumerator Explode()
+    protected void Explode()
     {
+        Destroy(gameObject, 1f);
         GetComponent<Animator>().Play("explodeAnimEnemy");
         GetComponent<Collider2D>().enabled = false;
-        yield return new WaitForSeconds(1);
-
-        Destroy(gameObject);
+        if(manager != null)
+            manager.DestroyedEnemy();
     }
 
-    public virtual void SetCanShoot(bool canShoot)
+    public void SetCanShoot(EnemyManager manager, bool canShoot)
     {
+        if(manager != null)
+            this.manager = manager;
         this.canShoot = canShoot;
     }
 }

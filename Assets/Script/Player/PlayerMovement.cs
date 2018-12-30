@@ -40,6 +40,6 @@ public class PlayerMovement : MonoBehaviour {
             }
 
             rigidbody.MovePosition(rigidbody.position + moveDir * speed * Time.fixedDeltaTime);
-        }
+        } 
     }
 }

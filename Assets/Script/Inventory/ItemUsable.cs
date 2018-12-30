@@ -10,8 +10,11 @@ public class ItemUsable : MonoBehaviour {
     [SerializeField] private Transform parentItem;
 
     public void Interact(){
-        if (currItem == null)
+        if (parentItem.childCount == 0)
         {
+            InputChecker.instance.ButtonsEnabled = false;
+            PauseButton.instance.ToggleCursorState(true);
+
             inventory.openInventory(true);
             inventory.canUse = this;
         } else
@@ -30,13 +33,19 @@ public class ItemUsable : MonoBehaviour {
         currItem = newItem;
         prefabItem = Instantiate(newItem.prefabItem, parentItem);
         prefabItem.transform.localPosition = Vector3.zero;
-        prefabItem.GetComponent<Rigidbody>().isKinematic = true;
         prefabItem.transform.localRotation = Quaternion.identity;
         prefabItem.transform.localScale = new Vector3(1, 1, 1);
 
+        Destroy(prefabItem.GetComponent<Collider>());
+        Destroy(prefabItem.GetComponent<Rigidbody>());
+        Destroy(prefabItem.GetComponent<SaveableObject>());
+
         GetComponent<Animator>().Play("gearlockAnim");
         inventory.openInventory(false);
-        parentItem.GetComponent<ChildSaveableObject>().SetDir(currItem.name);
+        parentItem.GetComponent<ChildSaveableObject>().SetDir(currItem.itemName);
+
+        InputChecker.instance.ButtonsEnabled = true;
+        PauseButton.instance.ToggleCursorState(false);
     }
 
     public void RemoveItem()
@@ -44,5 +53,6 @@ public class ItemUsable : MonoBehaviour {
         ItemDB._instance.AddItem(currItem);
         Destroy(prefabItem);
         currItem = null;
+        parentItem.GetComponent<ChildSaveableObject>().SetDir("");
     }
 }

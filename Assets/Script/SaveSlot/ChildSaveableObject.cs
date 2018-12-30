@@ -10,10 +10,15 @@ public class ChildSaveableObject : MonoBehaviour {
     }
 
     public void SetChild (string dir) {
-        GameObject tmp = Instantiate(Resources.Load(dir) as GameObject);
-        tmp.transform.SetParent(this.transform);
-        tmp.transform.localPosition = Vector3.zero;
-        tmp.transform.localRotation = Quaternion.identity;
+        if (!dir.Equals(""))
+        {
+            GameObject tmp = Resources.Load(dir) as GameObject;
+            transform.parent.GetComponent<ItemUsable>().ApplyItem(tmp.GetComponent<ItemHolder>().GetItem());
+
+        } else if (transform.childCount > 0)
+        {
+            Destroy(transform.GetChild(0).gameObject);
+        }
     }
 
     public string GetDir()

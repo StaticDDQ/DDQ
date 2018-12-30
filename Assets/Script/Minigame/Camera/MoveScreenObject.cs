@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class MoveScreenObject : MonoBehaviour {
 
     [SerializeField] private float force;
-    [SerializeField] private float bulletSpeed;
-    [SerializeField] private GameObject verdict;
     [SerializeField] private GameObject bulletTrail;
-    [SerializeField] private SpriteRenderer[] healthbar;
+    [SerializeField] private GameObject[] healthbar;
     [SerializeField] private Camera cam;
     private Rigidbody2D rigid;
     private int health = 3;
@@ -39,10 +38,7 @@ public class MoveScreenObject : MonoBehaviour {
 
     private void ShootProjectile()
     {
-        var bullet = (GameObject)Instantiate(bulletTrail, transform.position + transform.up * 0.9f, transform.rotation);
-
-        bullet.GetComponent<Rigidbody2D>().velocity = bullet.transform.up * bulletSpeed;
-        Destroy(bullet, 1.1f);
+        Instantiate(bulletTrail, transform.position + transform.up * 0.9f, transform.rotation);
     }
 
     private void FixedUpdate()
@@ -70,10 +66,10 @@ public class MoveScreenObject : MonoBehaviour {
         if (!isInvulnerable)
         {
             health -= 1;
-            healthbar[health].enabled = false;
+            healthbar[health].SetActive(false);
             if (health == 0)
             {
-                StartCoroutine(Explode());
+                Explode();
                 return;
             }
             StartCoroutine(Invulnerable());
@@ -84,7 +80,7 @@ public class MoveScreenObject : MonoBehaviour {
     {
         if(health < 3)
         {
-            healthbar[health].enabled = true;
+            healthbar[health].SetActive(true);
             health += 1;
             return true;
         }
@@ -100,13 +96,11 @@ public class MoveScreenObject : MonoBehaviour {
     }
 
     // Explode animation, temporary uninteractable for 1 second
-    private IEnumerator Explode()
+    private void Explode()
     {
         hasExploded = true;
         GetComponent<Animator>().Play("explodeAnimPlayer");
         GetComponent<Collider2D>().enabled = false;
-        yield return new WaitForSeconds(1);
-        verdict.GetComponent<VerdictGame>().Verdict(false);
-        Destroy(gameObject);
+        Destroy(gameObject,1);
     }
 }

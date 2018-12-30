@@ -14,6 +14,9 @@ TagManager:
   - Button
   - Redirect
   - MainScene
+  - SpawnPoint
+  - Rooms
+  - Room
   layers:
   - Default
   - TransparentFX
@@ -23,14 +26,14 @@ TagManager:
   - UI
   - 
   - 
-  - PostProcessing
+  - 
   - Player
   - pickUp
   - Carry
   - Bullet
   - BulletWall
-  - 
-  - 
+  - Enemy
+  - Stage
   - 
   - 
   - 

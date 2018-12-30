@@ -6,7 +6,7 @@ public class CameraFocus : MonoBehaviour {
     public Vector3 pos;
 
 	// Update is called once per frame
-	void Update () {
+	private void Update () {
         transform.position = Vector3.Lerp(transform.position, pos, Time.deltaTime * speed); 
 	}
 }
