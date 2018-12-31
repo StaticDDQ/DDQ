@@ -257,7 +257,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnPoint (2)
   m_TagString: SpawnPoint
-  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -453,7 +453,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnPoint (1)
   m_TagString: SpawnPoint
-  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -488,7 +488,7 @@ GameObject:
   m_Layer: 0
   m_Name: SpawnPoint
   m_TagString: SpawnPoint
-  m_Icon: {fileID: 6519382022992737161, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1618,6 +1618,7 @@ MonoBehaviour:
   - {fileID: 4588805897802962}
   - {fileID: 4267249031233446}
   gateAnim: {fileID: 95294219097908456}
+  heal: {fileID: 1365896901251008, guid: 3b49a963012a2a844b8b466832f361f3, type: 2}
 --- !u!114 &114421065503281956
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1630,7 +1631,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDir: 4
-  spawned: 0
   waitTime: 4
 --- !u!114 &114434183844139964
 MonoBehaviour:
@@ -1643,6 +1643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3053b8edecd3504e8c6ccfea9519f15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stageImg: {fileID: 114223710043323550, guid: 6c7c97f94de20d74683e7d25014a1720, type: 2}
 --- !u!114 &114595840250921232
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1654,6 +1655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3b42974705a88642acef8a74970a619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waitTime: 5
 --- !u!114 &114602290554213204
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1666,7 +1668,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDir: 2
-  spawned: 0
   waitTime: 4
 --- !u!114 &114685923352816916
 MonoBehaviour:
@@ -1680,7 +1681,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   openingDir: 1
-  spawned: 0
   waitTime: 4
 --- !u!212 &212151186857410888
 SpriteRenderer:

@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.UI;
 
 public class VerdictGame : MonoBehaviour {
 
@@ -10,22 +10,15 @@ public class VerdictGame : MonoBehaviour {
     // Play animation when either all enemies are destroyed or player is destroyed
     public void Verdict(bool isSuccess)
     {
-        if (!isSuccess)
-        {
-            GetComponent<SpriteRenderer>().sprite = failSprite;
-        }
-        else
-        {
-            GetComponent<SpriteRenderer>().sprite = successSprite;
-            wonGame = true;
-        }
-        StartCoroutine(ShowVerdict());
+        GetComponent<Image>().sprite = (isSuccess) ? successSprite : failSprite;
+        wonGame = isSuccess;
+
+        ShowVerdict();
     }
 
-    private IEnumerator ShowVerdict()
+    private void ShowVerdict()
     {
         GetComponent<Animator>().Play("VerdictAnim");
-        yield return new WaitForSeconds(1);
         Time.timeScale = 0.0f;
     }
 

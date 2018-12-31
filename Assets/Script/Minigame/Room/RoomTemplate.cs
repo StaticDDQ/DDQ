@@ -32,12 +32,14 @@ public class RoomTemplate : MonoBehaviour {
     private bool hasSpawnEndRoom = false;
 
     private List<GameObject> rooms;
+    private int enemyRoomsRemaining;
 
     private void Awake()
     {
         instance = this;
         rooms = new List<GameObject>();
         roomCounter = 0;
+        enemyRoomsRemaining = difficulty.numEnemyRooms;
     }
 
     private void Update()
@@ -49,7 +51,7 @@ public class RoomTemplate : MonoBehaviour {
                 hasSpawnEndRoom = true;
                 Instantiate(FinishRoom, rooms[rooms.Count - 1].transform.position, Quaternion.identity);
 
-                int rand = 0;
+                int rand;
 
                 for (int i = 0; i < difficulty.numEnemyRooms; i++)
                 {
@@ -86,25 +88,38 @@ public class RoomTemplate : MonoBehaviour {
         var roomTypes = RoomTypes[index1].RoomSides;
         int rand = Random.Range(0, roomTypes.Length - 1);
 
-        Instantiate(roomTypes[rand], pos, roomTypes[rand].transform.rotation);
+        var room = Instantiate(roomTypes[rand], pos, roomTypes[rand].transform.rotation);
+        AddRoom(room);
     }
 
     public void SpawnEndRoom(int index, Vector2 pos)
     {
         GameObject roomEnd = RoomTypes[index].EndRoom;
-        Instantiate(roomEnd, pos, roomEnd.transform.rotation);
+        var room = Instantiate(roomEnd, pos, roomEnd.transform.rotation);
+        AddRoom(room);
     }
 
     public void SpawnWallRoom(Vector2 pos)
     {
-        Instantiate(WallRoom, transform.position, Quaternion.identity);
-        var ui = Instantiate(wallRoomUI, canvasObj);
-        ui.transform.localPosition = pos;
+        Instantiate(WallRoom, pos, Quaternion.identity);
+        //var ui = Instantiate(wallRoomUI, canvasObj);
+        //ui.transform.localPosition = pos;
     }
 
     public void SpawnRoomUI(Image stageUI, Vector2 pos)
     {
         var ui = Instantiate(stageUI, canvasObj);
         ui.transform.localPosition = pos;
+    }
+
+    public void HasFinishedEnemyRooms()
+    {
+        if(enemyRoomsRemaining > 0)
+            enemyRoomsRemaining--;
+    }
+
+    public bool AllEnemyRoomsFinished()
+    {
+        return enemyRoomsRemaining == 0;
     }
 }

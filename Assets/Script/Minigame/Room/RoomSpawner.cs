@@ -11,13 +11,13 @@ public class RoomSpawner : MonoBehaviour {
     private bool spawned = false;
     private RoomTemplate templates;
 
-    public float waitTime = 4f;
+    public float waitTime = 3f;
 
     private void Start()
     {
         Destroy(gameObject, waitTime);
         templates = RoomTemplate.instance;
-        Invoke("Spawn", 1f);
+        Invoke("Spawn", 2f);
     }
 
     private void Spawn()
@@ -32,22 +32,19 @@ public class RoomSpawner : MonoBehaviour {
             {
                 templates.SpawnEndRoom(openingDir - 1, transform.position);
             }
-
-            templates.AddRoom(transform.parent.gameObject);
-
-            spawned = true;
+        } else
+        {
+            templates.SpawnWallRoom(transform.position);
         }
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (templates != null && collision.CompareTag("SpawnPoint") && !collision.GetComponent<RoomSpawner>().spawned && !spawned)
         {
-            templates.SpawnWallRoom(transform.position);
-
-            Destroy(collision.gameObject);
-            Destroy(gameObject);
+            spawned = true;
+            collision.GetComponent<RoomSpawner>().spawned = true;
         }
-        spawned = true;
     }
 }

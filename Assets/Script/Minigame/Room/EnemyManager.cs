@@ -39,6 +39,7 @@ public class EnemyManager : MonoBehaviour {
         if(enemySpawned == 0)
         {
             gateAnim.Play("OpenGates");
+            RoomTemplate.instance.HasFinishedEnemyRooms();
             Instantiate(heal, transform.position, Quaternion.identity);
         }
     }
