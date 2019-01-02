@@ -6,8 +6,10 @@ public class RoomTemplate : MonoBehaviour {
 
     public static RoomTemplate instance;
 
-    [SerializeField] private Transform canvasObj;
+    [SerializeField] private Transform roomObj;
+    [SerializeField] private Transform wallObj;
     [SerializeField] private MinigameDifficulty difficulty;
+    [SerializeField] private float zOffset;
 
     [System.Serializable]
     public class RoomVariation
@@ -87,28 +89,32 @@ public class RoomTemplate : MonoBehaviour {
     {
         var roomTypes = RoomTypes[index1].RoomSides;
         int rand = Random.Range(0, roomTypes.Length - 1);
+        var newpos = new Vector3(pos.x, pos.y, zOffset);
 
-        var room = Instantiate(roomTypes[rand], pos, roomTypes[rand].transform.rotation);
+        var room = Instantiate(roomTypes[rand], newpos, roomTypes[rand].transform.rotation);
         AddRoom(room);
     }
 
     public void SpawnEndRoom(int index, Vector2 pos)
     {
         GameObject roomEnd = RoomTypes[index].EndRoom;
-        var room = Instantiate(roomEnd, pos, roomEnd.transform.rotation);
+        var newpos = new Vector3(pos.x, pos.y, zOffset);
+        var room = Instantiate(roomEnd, newpos, roomEnd.transform.rotation);
         AddRoom(room);
     }
 
     public void SpawnWallRoom(Vector2 pos)
     {
-        Instantiate(WallRoom, pos, Quaternion.identity);
-        //var ui = Instantiate(wallRoomUI, canvasObj);
-        //ui.transform.localPosition = pos;
+        var newpos = new Vector3(pos.x, pos.y, zOffset);
+
+        Instantiate(WallRoom, newpos, Quaternion.identity);
+        var ui = Instantiate(wallRoomUI, wallObj);
+        ui.transform.localPosition = pos * 2;
     }
 
     public void SpawnRoomUI(Image stageUI, Vector2 pos)
     {
-        var ui = Instantiate(stageUI, canvasObj);
+        var ui = Instantiate(stageUI, roomObj);
         ui.transform.localPosition = pos;
     }
 

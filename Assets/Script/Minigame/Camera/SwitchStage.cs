@@ -23,7 +23,7 @@ public class SwitchStage : MonoBehaviour {
             if (firstTimeEnter)
             {
                 firstTimeEnter = false;
-                RoomTemplate.instance.SpawnRoomUI(stageImg, transform.position * 5);
+                RoomTemplate.instance.SpawnRoomUI(stageImg, transform.position * 2);
 
                 if (em != null && !hasSpawned)
                 {
